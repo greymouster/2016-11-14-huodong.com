@@ -1,0 +1,208 @@
+<?php
+/**
+ * Author: IT tiandao
+ * Date: 2016-07-05
+ */
+namespace Admin\Logic;
+use Admin\Api\api;
+/**
+ *用户逻辑操作类
+ */
+class UserLogic{
+    
+    /**
+     *登录
+     */
+    public static function  checkLogin($name,$pwd,$remeber){
+        if(!$name || !$pwd){
+            return array('status'=>-1,'msg'=>'用户名或密码不能为空');
+        }
+        //查询用户
+        $user = D('user')->where("user_name='{$name}' OR email='{$name}'")->find();
+        if(!$user){
+            return array('status'=>-1,'msg'=>'！无效的用户名和密码');
+        }
+        if($user['password'] != encrypt($pwd)){
+            return array('status'=>-1,'msg'=>'此帐号密码错误');
+        }
+        return array('status'=>1,'msg'=>'登录成功','user'=>$user);
+    } 
+
+    /**
+     * 注册
+     * @param $userName  用户名
+     * @param $pwd       密码
+     * @param $rePwd     确认密码
+     * @param $realName  姓名
+     * @param $email     邮箱
+     * @return array
+     */
+    public function reg($userName,$pwd,$rePwd,$realName,$email){
+       
+        if(!$userName || !$pwd || !$rePwd || !$realName || !$email){
+            return array('status'=>-1,'msg'=>'输入的信息不完整');
+        }
+        
+        $user = D('user')->where(array('user_name'=>$userName))->find();
+        //检测用户名是否存在
+        if($user){
+            return array('status'=>-1,'msg'=>'此用户名已存在');
+        }
+        //检测邮箱是否已经存在
+        $row = D('user')->where(array('email'=>$email))->find();
+        if($row){
+            return array('status'=>-1,'msg'=>'邮箱已存在');
+        }  
+        //验证两次密码是否一致
+        if($pwd != $rePwd){
+            return array('status'=>-1,'msg'=>'两次输入密码不一致');
+        }
+        
+        if(!checkEmail($email)){
+            return array('status'=>-1,'msg'=>'邮箱格式不正确');
+        }
+        
+        $data['user_name'] = $userName;
+        $data['password'] = encrypt($pwd);
+        $data['real_name'] = $realName;
+        $data['email']  = $email;
+        $data['reg_time'] = date('Y-m-d H:i:s');
+        $row = D('user')->data($data)->add();
+        if(!$row){
+            return array('status'=>-1,'msg'=>'注册失败'); 
+        }
+        return array('status'=>1,'msg'=>'注册成功','user'=>$row);
+    }
+    
+    /**
+     *检验验证码
+     *@param code  用户输入验证码
+     *@return array
+     */
+     public static function checkCode($email,$code){
+         if(!$email){
+             return array('status'=>-1,'msg'=>'请输入邮箱');
+         }
+         if(!$code){
+             return array('status'=>-1,'msg'=>'请输入验证码');
+         }
+         $newCode = session('code');
+         if($newCode == $code){
+            //session('code',null);
+            return array('status'=>1,'msg'=>'验证成功');
+         }
+         return array('status'=>-1,'msg'=>'验证码错误');
+     }
+     
+    /**
+     *获取验证码
+     */
+     public static function _getCode($email){
+        if(!checkEmail($email)){
+            return array('status'=>-1,'msg'=>'邮箱格式不正确');
+        }
+        //查询该邮箱是否存在
+        $user = D('user')->where(array('email'=>$email))->find();
+        if(!$user){
+            return array('status'=>-1,'msg'=>'该邮箱不存在');
+        }
+        $code  = self::sendEmail($email);
+        if($code['Status'] == 2){
+            return array('status'=>1,'msg'=>'验证码发送成功');
+        }
+        return array('status'=>-1,'msg'=>'发送验证码失败');
+     }
+     
+     /**
+      *设置密码
+      *@param pwd 新密码
+      *@param repwd 重复密码
+      *@param oldpwd 原密码
+      *@param flag 是否验证原密码
+      *@param email 用户邮箱
+      */
+     public static function getPwd($pwd,$repwd,$email=null,$oldpwd=null,$flag=false){
+         
+         //需要验证原密码
+         if($flag){
+            if(!$oldpwd){
+                return array('status'=>-1,'msg'=>'原密码不能为空');
+            }
+            $user = D('user')->where(array('user_id'=>session('user_id')))->field('password')->find();
+            if($user['password'] != encrypt($oldpwd)){
+                return array('status'=>-1,'msg'=>'原密码错误');
+            }
+         }
+         
+         if(empty($pwd) || empty($repwd)){
+            return array('status'=>-1,'msg'=>'新密码或重复密码不能为空');
+         }
+         if($pwd != $repwd){
+             return array('status'=>-1,'msg'=>'两次输入的验证码不一致');
+         }
+         $data['password'] = encrypt($pwd);
+         $user_id = session('user_id');
+         //先去查询数据库密码和要修改的密码是否相同
+         $row = D('user')->where("email='{$email}' OR user_id='{$user_id}'")->field('password')->find();
+         //检验是否验证原始密码
+         if($data['password'] == $row['password']){
+             return array('status'=>1,'msg'=>'设置成功');
+         }
+         $result = D('user')->where("email='{$email}' OR user_id='{$user_id}'")->save($data);
+         if($result){
+            return  array('status'=>1,'msg'=>'设置密码成功');          
+         }
+         return array('status'=>-1,'msg'=>'设置密码失败');
+     }
+     
+    /**
+     *修改用户
+     *@param username 用户名
+     *@param realname 姓名
+     *@return array     
+     */
+     public static function edit($username,$realname){
+        if(!$username || !$realname ){
+            return array('status'=>-1,'msg'=>'请输入姓名');
+        }     
+        $data['real_name'] = $realname;
+        $info = D('user')->where(array('user_name'=>$username))->save($data);
+        if($info){
+            return array('status'=>1,'msg'=>'姓名更新成功');
+        }
+        return array('status'=>-1,'msg'=>'姓名更新失败');        
+     }
+     
+    /**
+     *发送邮件
+     */
+    public static function sendEmail($toMail){
+         /*发送邮件，验证激活(post表单方式)*/
+        $code =getCode();
+        session('code',$code);
+        $mailSubject="请确认您的验证码信息（系统邮件，请勿回复）";
+        $register=new api();
+        $signkey=$register->createSignkey($toMail,$mailSubject);   
+        $register->api_url=C("ApiUrl")."Email/SendEmail";
+        $data=array("toMail"=>$toMail,"mailSubject"=>$mailSubject,"type"=>7,"uid"=>"000001","guid"=>"","signkey"=>$signkey,"code"=>$code);
+        return $register->mess($data);
+    }
+    
+    /**
+     * [curl_post curl post方式请求接口]
+     * @param  [type] $url  [接口的url]
+     * @param  [type] $data [传递的参数]
+     * @return [type]       [返回状态码]
+     */
+    public static function curl_post($url,$data){
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, 1 );
+        curl_setopt ( $ch, CURLOPT_HEADER, 0 );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
+        $return = curl_exec ( $ch );
+        curl_close ( $ch );
+        return $return;
+    }
+}

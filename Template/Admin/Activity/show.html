@@ -1,0 +1,77 @@
+<include file="Common/main-header" />
+    <div class="info-manage info-url" style="margin-left:-150px;height:800px;">
+        <h3>活动信息管理</h3>
+        <a href="info-manage.html">活动信息管理</a>>><a href="#">足以让你一生的生存礼仪培训课程</a>>><a href="info-url.html">查看URL和二维码</a>
+        <div class="choose">
+            <p class="p-choose">筛选</p>
+            <dl>
+                <dt>活动负责人：<span>{$user}</span></dt>
+				<form action="" method="GET">
+                <dd>
+                    <select name="channel_id">
+					     <option value="" >渠道</option>
+					    <foreach  name="channelData" item="val">
+                        <option value="{$val.id}" <if condition="$Think.get.channel_id eq $val['id']">selected="selected"</if>>{$val.channel_name}</option>
+						</foreach>
+                    </select>
+                </dd>
+                <dd><input type="submit" value="搜索" /> </dd>
+				</form>
+            </dl>
+        </div>
+        <a href="{:U('Activity/exportAllData',array('id'=>I('get.act_id')))}">批量导出URL到excel</a>
+        <div class="table">
+            <ul class="thead">
+                <li class="li-xs">编号</li>
+                <li class="li-sm">所属活动</li>
+                <li>渠道</li>
+                <li>渠道名称</li>
+                <li>渠道具体信息</li>
+                <li>备注</li>
+                <li class="li-lg">操作</li>
+            </ul>
+			<foreach name="data" item="vo">
+            <ul>
+                <li class="li-xs"><?php echo ++$key;?></li>
+                <li class="li-sm">{$vo.act_name}</li>
+                <li>{$vo.channel_name}</li>
+                <li>{$vo.channel_alias}</li>
+                <li>{$vo.channel_detal}</li>
+                <li>{$vo.channel_remarks}</li>
+                <li class="li-lg">
+                    <a href="javascript:;" class="select_act" act-id="{$vo.act_id}">查看活动</a>
+                    <a href="javascript:;" data-url="{$vo.channel_url}"class="copy-url">复制推广URL</a>
+                    <a href="javascript:;" data-id="{$vo.id}" data-url="{$vo.channel_url}" class="create_qrcode">生成二维码</a>
+                    <a href="javascript:;" data-id="{$vo.id}" class="del-channel-message">删除</a>
+                </li>
+            </ul>
+            </foreach>
+        </div>
+    </div>
+</body>
+<script>
+    $(function(){
+        $('.account').click(function(){
+            $(this).children('ul').css('display','block');
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.account ul').css('display','none');
+        })
+    })
+</script>
+<script>
+    $(function(){
+        $(".select_act").click(function(){
+            var actId = $(this).attr('act-id');
+            layer.open({
+                type: 2,
+                title: '查看活动',
+                shadeClose: true,
+                area: ['640px', '750PX'],
+                content: '/index.php/Admin/Activity/actPreview/act_id/'+actId,
+            });
+        });
+    })
+</script>
+</html>

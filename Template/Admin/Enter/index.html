@@ -1,0 +1,92 @@
+<include file="Common/main-header" />
+<!--日期插件start-->
+ <link rel="stylesheet" href="__PUBLIC__/Admin/Plugins/datetimepicker/datetimepicker.css">
+ <script src="__PUBLIC__/Admin/Plugins/datetimepicker/datetimepicker.js"></script>
+<!--日期插件end-->
+    <div class="info-manage act-online join-sh" style="margin-left:-150px;height:800px;">
+        <h3>报名审核</h3>
+                <div class="choose">
+            <p class="p-choose">筛选</p>
+            <form action="{:U('Enter/index')}" method="GET">
+            <dl>
+                <dt>活动负责人：<span>{$Think.session.realname}</span></dt>
+                <dd>
+                    <select name="actname">
+                        <option value="" selected="selected">全部活动</option>
+                        <foreach name="info" item="val">
+                        <option value="{$val.act_name}">{$val.act_name}</option>
+                        </foreach>
+                    </select>
+                </dd>
+                <dd><input type="text" placeholder="活动开始时间" class="datetimepicker-date" name="start_time"/> </dd>
+                <dd><input type="text" placeholder="活动结束时间" class="datetimepicker-date" name="end_time"/> </dd>
+                <dd><input type="submit" value="搜索" /> </dd>
+            </dl>
+            </form>
+        </div>
+        <div class="table join-info">
+            <ul class="thead">
+                <li>学生姓名</li>
+                <li>学生电话</li>
+                <li>电子邮件</li>
+                <li>活动名称</li>
+                <li>状态</li>
+                <li>报名审核</li>
+            </ul>
+            <foreach name='data' item="vo">
+            <ul>
+                <li>{$vo.user_name}<br><a href="{:U('Enter/info',array('id'=>$vo['act_id'],'user_id'=>$vo['user_id'],'version'=>$vo['version']))}">查看</a> </li>
+                <li>{$vo.phone}</li>
+                <li>{$vo.email}</li>
+                <li>{$vo.act_name}</li>
+                <if condition="$vo.act_status eq 0 || $vo.status neq 0">
+                    <li><img src="__PUBLIC__/Admin/images/dui.jpg" />已处理 </li>
+                    <else/>
+                    <li><img src="__PUBLIC__/Admin/images/cuo.jpg" />未处理 </li>
+                </if>
+                <li>
+                    <!--<if condition="$vo.status eq 0 && $vo.act_status eq 0">-->
+                    <!--<a href="javascript:;" style="color:gray;">是否通过</a>-->
+                    <!--</if>-->
+                    <if condition="$vo.status eq 0">
+                        <a href="javascript:;" data-id="{$vo.act_id}" data-userid="{$vo.user_id}" class="pass" style="text-align:center;cursor: pointer;">是否通过</a>
+                    </if>
+                    <if condition="$vo.status eq 1">
+                        <a href="javascript:;" style="cursor:none;">通过</a>
+                    </if>
+                    <if condition="$vo.status eq 2">
+                        <a href="javascript:;" style="cursor:none;">不通过</a>
+                    </if>
+                    <!-- <div class="pass-box">
+                        <h6>提示</h6>
+                        <p>确定要处理么？</p>
+                        <button class="yes">通过</button>
+                        <button class="cancel">取消</button>
+                    </div> -->
+                </li>
+            </ul>
+            </foreach>
+        </div>
+         <notempty name="data">
+             <div class="page-list-link">
+                 {$page}
+             </div>
+         </notempty>
+    </div>
+</body>
+<script>
+    $(function(){
+        $('.datetimepicker-date').datetimepicker({
+            lang: 'ch',
+            onGenerate: function(ct) {
+                $(this).find('.xdsoft_date').toggleClass('xdsoft_disabled');
+            },
+            timepicker: false,
+            format: 'Y-m-d',
+            formatDate: 'Y-m-d',
+            minDate: '-1970/01/02', // yesterday is minimum date
+            maxDate: '+1970/01/02' // and tommorow is maximum date calendar
+        });
+    })
+</script>
+</html>

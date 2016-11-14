@@ -1,0 +1,1187 @@
+*{
+    margin:0;
+    padding:0;
+    font-family:'Microsoft YaHei','微软雅黑'
+}
+
+body{font-size:14px;}
+a{text-decoration:none;color:#0033cc;}
+a.disabled{color:#ccc;cursor:text;}
+ul{list-style: none;}
+input[type="submit"],input[type="reset"]{
+    padding:7px 0;
+    text-align:center;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    background:none;
+    border:solid black 1px;
+    width:100px;
+}
+.search-data{
+    padding:7px 0;
+    text-align:center;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    background:white;
+    border:solid black 1px;
+    width:100px;
+}
+/*系统登录*/
+.login{
+    width:650px;
+    border:solid black 1px;
+    margin:150px auto;
+    position:relative;
+    padding:30px;
+}
+.login .reg{
+    position:absolute;
+    top:36px;
+    right:30px;
+}
+.login h2{text-align:center;}
+.login form{margin:20px auto;border:solid 1px #000;padding:80px 100px;position:relative;}
+.login form dl{overflow:hidden;margin-bottom:20px;}
+.login form dt,.login form dd{float:left;}
+.login form dt{width:80px;margin-top:7px;}
+.login form dl dd input{padding:10px;width:248px;}
+.login form .submit{
+    color: #000000;
+    font-size: 13px;
+    height: 25px;
+    text-align: center;
+    text-decoration: none;
+    width: 160px;
+    margin:0 auto;
+    display:block;
+    border-radius: 0;
+    padding: 0;
+    border: 2px outset buttonface;
+    background-color: buttonface;
+}
+.login form .check{padding-left:30px;}
+.login form .check dt{margin-right:50px;}
+
+/*登录失败*/
+.login form p.box{
+    position:absolute;
+    top:10px;
+    left:40px;
+    width:560px;
+    padding:10px 0;
+    background:#FF0000;
+    text-align:center;
+}
+/*忘记密码*/
+.forget-pass{width:400px;border:solid black 1px;padding:20px 40px;margin:20px auto;}
+.forget-pass dl{overflow:hidden;margin:20px 0 5px 0;}
+.forget-pass dt,.forget-pass dd{float:left;margin:0 7px;}
+.forget-pass button{
+    padding:7px 0;
+    text-align:center;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    background:none;
+    border:solid black 1px;
+    width:100px;
+}
+/*退出登录*/
+.back form p.box{background:#33CC00;color:#fff;border:solid #999 1px;}
+/*登录进入后的首页*/
+.home-top{width:1280px;padding:10px 25px;color:#fff;height:50px;background:#009DD9;margin:10px;}
+.home-top h2,.home-top p{float:left;}
+.home-top p,.home-top .account{margin-top:7px;}
+.home-top .account{float:right;position: relative;}
+.home-top h2{margin-right:40px;}
+.home-top .account ul{position:absolute;top:30px;right:-25px;border:solid #999 1px;display:none;}
+.home-top .account ul li a{
+    display:block;border-bottom:solid #666 1px;
+    width:160px;
+    text-align: center;
+    padding:10px 15px;
+    background:#fff;
+}
+.account-info input.button{
+    font-size: 14px;width:80px;height:33px;text-align: center;line-height: 33px;color: #fff;border:none;margin:10px;
+}
+.account-info input.submit-pwd{
+    background-color: #fd580f;
+}
+.account-info input.remove-pwd{
+    background-color: #D4D4D4;
+}
+.home-left{float:left;margin-left:10px;}
+.home-left ul{width:150px;padding:20px 10px;background:#ccc;}
+.home-left ul li h3{padding:10px 0 10px 25px;background:#fff;}
+.home-left ul li a{
+    color:#000;
+    display:block;
+    text-align:center;
+    margin:15px 0;
+    font-size:13px;
+    font-weight:bold;
+}
+.home-left ul li a:hover{
+    color:#009DD9;
+}
+/*链接点击之后*/
+.home-left ul li a.active{
+    color:#009DD9;
+}
+.account-info{margin-top:20px;padding-left:190px;}
+.account-info h3{border-bottom:dotted 2px #000;width:700px;padding-bottom:5px;}
+.account-info dl{overflow:hidden;margin-top:30px;margin-left:20px;}
+.account-info dl dt,.account-info dl dd{float:left;font-size:16px;margin:5px;}
+.account-info dl dt{width:100px;font-size:14px;margin:5px;text-align:center;}
+.account-info input[type='password']{
+    height:30px;
+    width:200px;
+}
+.account-info button{
+    padding:7px 0;
+    text-align:center;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    background:none;
+    border:1px solid #ccc;
+    width:100px;
+}
+/*.delete-user img{
+    width:20px;
+}*/
+.account-info .reserve{margin:50px 0 0 70px;}
+.account-info .reserve button{margin-right:30px;}
+/*修改密码*/
+.modify-pass .reg{width:50px;color:#fff;background:#C75050;text-align:center;}
+.modify-pass form{padding:20px 100px;}
+.modify-pass form dl dd input[type="reset"]{width:100px;padding:7px 0;}
+.modify-pass form dl.reserve dt{margin:0 100px 0 0;}
+.modify-pass form dl.reserve{padding-left:30px;}
+/*最新公告*/
+.new-info{padding-left:190px;width: 990px;}
+.new-info h3{border-bottom:dotted 2px #000;padding:5px 0;margin:0 0 10px 0;}
+.new-info h2{display: inline-block;}
+.new-info h2 span{
+    font-weight: normal;
+    font-size: 14px;
+    margin: 0 0 0 30px;
+}
+.new-info .news{width:850px;margin-top:40px;}
+.new-info .news p{word-wrap:break-word;margin-bottom:20px;color:#333;}
+.new-info a{float:right;margin: 0 10px;}
+.new-info .pagnation li a{
+    margin:0;
+}
+/*修改公告*/
+.modify-info a{float:none;}
+.modify-info .news{margin-top:20px;border:solid #333 1px;}
+.modify-info form input[type="text"]{
+    width: 200px;
+    margin: 20px 0 0 0;
+}
+.modify-info .news textarea{width:100%;height: 250px;border: none;}
+.modify-info .news textarea:focus{border: none;outline: none;}
+.modify-info form dl{overflow:hidden;padding-left:150px;margin-top:20px;}
+.modify-info form dl dt,.modify-info form dl dd{float:left;}
+.modify-info form dl dd button{
+    padding:7px 0;
+    text-align:center;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    background:none;
+    border:solid black 1px;
+    width:100px;
+    margin-left:100px;
+}
+/*发布新活动*/
+.publish-act{padding-left:190px;}
+.publish-act h3{border-bottom:dotted 2px #000;width:990px;margin-bottom:20px;}
+.publish-act .act-info{
+    width:1090px;
+    margin-top:20px;
+    padding:10px 10px 40px 20px;
+    border:solid #000 1px;
+}
+.publish-act .top{overflow:hidden;padding-left:50px;}
+.publish-act .top .one,.publish-act .top .line{float:left;}
+.publish-act .top .one{text-align:center;}
+.publish-act .top .line{
+    width:200px;
+    height:1px;
+    background:#000;
+    margin: 30px 10px 0 10px;
+}
+.publish-act .top .one p.active{color:#66CC66;}
+.publish-act .base-info{
+    border:solid #000 1px;
+    padding:0 15px 20px 15px;
+    margin-top:30px;
+}
+.publish-act .base-info p.title,.form-set p.title{
+    width:200px;
+    padding:20px 0;
+    color:#fff;
+    background:#FF6600;
+    text-align:center;
+    margin-top:-8px;
+}
+.publish-act .base-info dl{margin:20px 0 80px 0;height:27px;}
+.publish-act .base-info dl dt,.publish-act .base-info dl dd{float:left;margin-right:30px;}
+.publish-act .base-info dl dt span{color:#FF0000;}
+.publish-act .base-info dl input[type="text"]{padding:5px;width:140px;}
+.publish-act .base-info dl select{padding:5px;width:216px;}
+.publish-act .base-info dl dd i{
+    font-style: normal;
+    font-weight:normal;
+    font-size:16px;
+}
+.publish-act .base-info dl dd{position:relative;}
+.publish-act .base-info dl dd .day{
+    position: absolute;
+    top:30px;
+    left:-95px;
+    width:700px;
+    display:none;
+}
+.publish-act .base-info dl dd .week{
+    position: absolute;
+    top:30px;
+    left:-95px;
+    width:700px;
+    display:none;
+}
+.publish-act .base-info dl dd .day input[type="text"],.publish-act .base-info dl dd .week input[type="text"]{
+    width:110px;
+    margin:0 10px;
+}
+.publish-act .base-info dl dd .week .rate{margin:0 0 5px 10px;}
+.publish-act .base-info dl dd .week input[type="checkbox"]{
+    margin:0 10px;
+}
+.publish-act .base-info dl input.time{width:110px;}
+.publish-act .base-info .submit{
+    color: #000000;
+    font-size: 13px;
+    height: 25px;
+    text-align: center;
+    text-decoration: none;
+    margin:0 auto;
+    display:block;
+    border: 2px outset buttonface;
+    border-radius: 0;
+    padding: 0;
+    background-color: buttonface;
+}
+.publish-act .base-info .up,.publish-act .details button,.publish-act .bottom button{
+    color: #000000;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    height: 25px;
+    text-align: center;
+    text-decoration: none;
+    width: 100px;
+    position: relative;
+    margin: 0 auto 10px auto;
+    display: block;
+}
+.publish-act .base-info .up input[type="file"]{
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    -webkit-opacity:0;
+    -moz-opacity:0;
+    -o-opacity:0;
+    filter:alpha(opacity=0);
+}
+.publish-act .overview{height:200px;}
+.publish-act .base-info .up-pic{
+    width:530px;
+    text-align:center;
+    float:right;
+    /*padding: 48px 240px;*/
+}
+.publish-act .bottom button{display:inline-block;margin-right:40px;}
+.publish-act .bottom{
+    margin:40px 0 0 300px;
+}
+.publish-act #uploadPreview{
+    width: 300px;
+    height: 145px;
+}
+/*报名表单设置*/
+.publish-act .act-set{border:none;width: 1100px;}
+.form-set{
+    border:solid #000 1px;
+    padding:0 30px 30px;
+    margin-top:30px;
+}
+.form-set .set-left{
+    float:left;
+    width:550px;
+    border:solid #000 1px;
+    position:relative;
+    margin: 20px 0 0 0;
+}
+.form-set .set-left h1{
+    text-align:center;
+    color:#fff;
+    background:#66FFFF;
+    padding:10px 0;
+    border-bottom:solid 1px #000;
+}
+.form-set .set-left a.operation{
+    position:absolute;
+    top:20px;
+    right:20px;
+}
+.form-set .set-left h2{text-align:center;margin:10px 0 30px 0;}
+.form-set .set-left dl{overflow:hidden;padding-left:40px;margin-bottom:30px;}
+.form-set .set-left dl .add{
+    clear: both;
+    padding-left: 69px;
+    padding-top: 15px;
+}
+.form-set .set-left dl .add span{
+    position:relative;
+}
+.form-set .set-left dl .add img{
+    cursor:pointer;
+}
+.form-set .set-left dl .add .img-ad{vertical-align: middle;}
+.form-set .set-left dl .add .img-de{
+    position: absolute;
+    top: -16px;
+    right: -8px;
+}
+.form-set .set-left dl .add input{
+    width: 100px;
+    padding: 5px;
+    margin: 5px 5px;
+}
+.form-set .set-left dl dt,.form-set .set-left dl dd{float:left;}
+.form-set .set-left dl dd textarea{
+    width: 250px;
+    height: 50px;
+    padding: 5px;
+}
+.form-set .set-left dl.radio dd.dd-sel,.form-set .set-left dl.checkbox dd.dd-sel{width:270px;}
+.form-set .set-left dl dt{width:65px;}
+.form-set .set-left dl dt span{color:red;}
+.form-set .set-left dl dd input{width:250px;padding:5px;}
+.form-set .set-left dl dd.name-input input{
+    width: 80px;
+    margin-right: 10px;
+}
+.form-set .set-left dl dd.name-input input.error{border:solid red 1px;}
+.form-set .set-left dl dd input[type="radio"],.form-set .set-left dl dd input[type="checkbox"]{width:auto;margin:0 0 0 20px;}
+.form-set .set-left .set-bottom input[type="submit"],.form-set .set-left .set-bottom button,
+.form-set .set-left .moudle-box button{
+    margin:10px 30px 20px 50px;
+    color: #000000;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    border-radius: 0;
+    border: 2px outset buttonface;
+    padding:0 15px;
+    width:100px;
+    display:inline-block;
+    box-sizing: content-box;
+    background-color: buttonface;
+}
+
+.form-set .set-left dl dd img{width:30px;margin-left:5px;}
+.form-set .set-left .moudle-box{
+    border:solid #000 1px;
+    padding:10px;
+    width:190px;
+    margin: 30px auto;
+    display:none;
+}
+.form-set .set-left .moudle-box button{
+    width:90px;
+    padding:3px 0;
+    margin-top:20px;
+}
+.form-set .set-left .moudle-box input{padding:5px;width:170px;}
+.form-set .set-right{
+    width:445px;
+    float:right;
+    margin-top:18px;
+    border:solid #000 1px;
+}
+.form-set .set-right ul{overflow:hidden;}
+.form-set .set-right ul.menu li{
+    width:444px;
+    float:left;
+    text-align:center;
+    padding:5px 0;
+    border-bottom:solid 1px #333;
+    cursor: pointer;
+}
+.form-set .set-right ul.menu li.active{color:#FFAB3A;}
+.form-set .set-right ul.content li{padding:10px;height: 800px;}
+.form-set .set-right ul.content li dl{overflow:hidden;padding-left:50px;margin:20px 0;}
+.form-set .set-right ul.content li dl dt,.form-set .set-right ul.content li dl dd{float:left;}
+.form-set .set-right ul.content li dl dd img{margin:-5px 5px;cursor: pointer;}
+.form-set .set-right ul.content li dl dt{width:60px;}
+.form-set .set-right ul.content li dl dd input{width:235px;padding: 2px 0;margin: 0 0 15px 0;}
+.form-set .set-right ul.content li .usual{
+    width:300px;
+    border:solid #000 1px;
+    padding:10px;
+    margin:20px 0;
+}
+.form-set .set-right ul.content li .usual p{
+    width:66px;
+    background: #fff;
+    margin: -21px 0 0 60px;
+    text-align:center;
+}
+.form-set .set-right ul.content li .usual span{
+    border:solid #000 1px;
+    margin: 10px 10px;
+    display: inline-block;
+    padding:0 5px;
+}
+.form-set .set-right ul.content li.set dl,.form-set .set-right ul.content li.set .select{
+    padding-left:10px;
+}
+.form-set .set-right ul.content li.set .select p{float:left;width:60px;}
+.form-set .set-right ul.content li.set dl dt{
+    width:100px;
+}
+.form-set .set-right ul.content li dl.check-Box dd input{
+    width:auto;
+}
+.form-set .set-right ul.content li dl.check-Box dd{font-size:14px;}
+.form-set .set-right ul.content li dl.check-Box dd span{color:#FF0000;}
+.modal-open .modal{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal-open{overflow:hidden;}
+.modal{
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    outline: 0;
+    -webkit-overflow-scrolling: touch;
+    background:rgba(0,0,0,.7);
+    display:none;
+}
+.modal .modal-dialog{margin:0 auto;}
+.modal .modal-content{
+    position: relative;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 4px;
+    outline: 0;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    margin-top: 20px;
+}
+.modal .modal-header{
+    min-height: 16.43px;
+    padding: 15px;
+}
+.modal button.close{
+    padding: 0;
+    cursor: pointer;
+    border: 0;
+    background: 0 0;
+    float: right;
+    font-size: 30px;
+    margin-top: -10px;
+}
+.modal .modal-body{
+    position: relative;
+    padding: 15px;
+    max-height:700px;
+    min-height:420px;
+    margin-bottom:5px;
+    overflow-x:hidden;
+}
+.modal .modal-body .page-header{margin:15px 0 5px 10px;}
+.modal .modal-body .control-group{margin:15px 0;}
+.modal .modal-body .control-group .controls{margin:10px 0; color:gray;}
+.modal fieldset{border:none;}
+.modal .modal-footer{
+    margin-top: 15px;
+    padding: 14px 15px 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+}
+.modal fieldset .input-xxlarge{width:530px;padding:3px;}
+.modal form .input-xlarge{width:270px;padding:3px;}
+.modal fieldset .control-group .controls span{margin:10px 20px 0 0;}
+.modal fieldset .control-group .controls select{width:170px;}
+.modal fieldset .control-group .controls select option{margin:10px 0;width:170px;}
+.modal .modal-body fieldset .control-group label i{font-style:normal;color:red;}
+.modal .modal-body fieldset .control-group .controls textarea{width: 538px;height: 60px;}
+/*启用表单模板*/
+.use-form .form-moudle ul{
+    overflow:hidden;
+    width:600px;
+    margin:20px 0 0 20px;
+    float: left;
+}
+.use-form .form-moudle ul li{
+    float:left;
+    position:relative;
+    border:solid #000 1px;
+    width: 250px;
+    height: 130px;
+    margin-right:90px;
+    margin-bottom:40px;
+}
+.use-form .form-moudle ul li.last{margin-right:0;}
+.use-form .form-moudle ul li .operation{
+    position:absolute;
+    right:10px;
+}
+.use-form .form-moudle ul li .operation a{
+    display:block;
+    margin-bottom:10px;
+}
+.use-form p.five{text-align:right;width: 975px;}
+.use-form span{
+    display:block;
+    float:left;
+    margin:100px 0 0 50px;
+    font-size:14px;
+    color:#FF0000;
+}
+.use-form .form-moudle ul li a h2{
+    font-size: 60px;
+    color: #333;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 20px;
+}
+/*活动信息管理*/
+.info-manage{
+    width:1110px;
+    margin:20px 0 0 20px;
+    padding-left:190px;
+}
+.info-manage h3{border-bottom:dotted 2px #000;margin: 0 0 20px 0;}
+.info-manage .choose{
+    width:1100px;
+    background:#CCCCCC;
+    border:solid #000 1px;
+    margin:20px 0;
+    height:100px;
+}
+.info-manage .choose dl{overflow:hidden;margin:20px 0 0 0;}
+.info-manage .choose dl dt,.info-manage .choose dl dd{
+    float:left;
+    margin:0 15px;
+}
+.info-manage .choose p.p-choose{
+    width: 35px;
+    background: #fff;
+    margin: -10px 0 0 20px;
+}
+.info-manage .choose dl dd input[type="submit"]{
+    background:#FFCC00;
+    padding: 5px 0;
+}
+.info-manage .choose dl dd input{
+    padding:5px;
+}
+.info-manage .choose dl dd select{height:32px;}
+.info-manage .table{margin-top:20px;}
+.info-manage .table ul{
+    overflow:hidden;
+    list-style: none;
+}
+.info-manage .table ul li{
+    float:left;
+    width:158px;
+    font-size:14px;
+}
+.info-manage .table .thead{background:#0099FF;}
+.info-manage .table .thead>li{
+    color:#fff;
+    padding:10px 0;
+    text-align:center;
+}
+.info-manage .table .gray{
+    background:#ccc;
+    padding:10px 0;
+    text-align:center;
+}
+.info-manage .table ul.white li{
+    width: 100%;
+    margin: 8px;
+    border-bottom: solid 5px #008aff;
+    margin-bottom: 0px;
+    margin-top: 15px;
+}
+.info-manage .table ul.white li a{margin:0 10px;}
+.info-manage .table ul.white li a.disabled{color:#999;cursor:text;}
+.info-manage .table .gray li span{color:#FF0000;}
+.pagnation{overflow:hidden;margin:50px 0 0 100px;}
+.pagnation  li{float:left;margin:0 5px;}
+.pagnation li a{
+    display:block;
+    padding:10px 15px;
+    border:solid #ccc 1px;
+}
+.pagnation li.active a{
+    border:0 solid #000;
+}
+/*翻页样式*/
+.page-list-link{width:850px;margin:50px auto;}
+.page-list-link a.num,a.prev,a.next{border:solid 1px #ccc;padding:7px 15px;margin:0 5px;}
+.page-list-link a.first {
+    padding: 7px;
+    border: 1px solid #ccc;
+}
+.page-list-link a.end {
+    padding: 7px;
+    border: solid 1px #ccc;
+}
+span.current{padding:10px 15px;}
+/*活动推广*/
+.info-extension{
+    padding:10px 190px;
+    width:1100px;
+}
+.info-extension h2{border-bottom:dotted 2px #000;margin:0 0 20px 0;}
+.info-extension .act-extension{
+    border:solid #000 1px;
+    padding:10px 0 50px 10px;
+    margin-top:20px;
+}
+.info-extension .act-extension p{margin:20px 0;}
+.info-extension .act-extension form dl{overflow:hidden;margin:20px 0;}
+.info-extension .act-extension form dl dt,.info-extension .act-extension form dl dd{float:left;margin:0 10px;}
+.info-extension .act-extension form a.disabled{margin-left:30px;}
+.info-extension .act-extension form input{padding:3px;}
+.info-extension .act-extension form select{height:25px;}
+/*查看URL和二维码*/
+.info-url .choose dl dd select{width:150px;height:25px;}
+.info-url .table{
+
+    border-bottom:solid #000 1px;
+}
+.info-url .table ul li{
+    width:136px;
+    text-align:center;
+    
+    border-top:solid #000 1px;
+
+    line-height:30px;
+}
+.info-url .table ul li.li-xs{width:60px;}
+.info-url .table ul li.li-sm{width:180px;}
+.info-url .table ul li.li-lg{width:308px;}
+.info-url .table ul li.li-lg a{margin:0 5px;}
+.info-url .table .thead {
+    background: none;
+}
+.log ul{width:900px}
+.info-url .table .thead li{color:#000;padding:0;}
+/*查看活动数据*/
+.act-data .table,.act-form .table-one{border:solid #000 1px;padding-bottom:20px;margin-bottom:20px;}
+.act-data .table .thead,.act-form .table-one .thead{background:none;margin-bottom:20px;}
+.act-data .table .thead li,.act-form .table-one .thead li{color:#000;font-weight:bold;}
+.act-data .table ul li{text-align:center;width:150px;}
+.act-data .table ul li.li-lg,.act-form .table-one ul li.li-lg{width:250px;}
+.act-data .number{
+    overflow:hidden;
+    background:#F5F5F5;
+    border:solid #ccc 1px;
+    padding:10px;
+}
+.act-data .choose{margin:20px 0 0 0;}
+.act-data .wrapper{margin:30px 0 0 0;}
+/*查看报名表单*/
+.act-form .table-one ul li{width:120px;text-align:center;}
+.act-form .table .thead{background:none;}
+.act-form .table-two .thead li{color:#000;padding:0;}
+.act-form .table ul li{text-align:center;}
+.act-form .table-two ul li{
+    border-top:1px solid #000;
+    border-left:solid #000 1px;
+    /*width:160px;
+    height:30px;*/
+    line-height:30px;
+}
+.act-form .table-two{
+    width:1300px;
+    border-right:1px solid #000;
+    border-bottom:solid #000 1px;
+}
+.act-form .table-two ul{display:table;table-layout:fixed;width:1300px;}
+.act-form .table-two ul li{float:none;display:table-cell;width:80px;word-wrap : break-word ;word-break : break-all;}
+.act-form .table-two ul li.last{width:300px;}
+/*我推广的活动*/
+.activity-me .choose dl dd input[type="submit"]{
+    background:#fff;
+}
+/*活动上线审核*/
+.act-online .choose{height:auto;padding:0 0 30px 0;}
+.act-online .choose p.p-choose{width:60px;}
+.act-online .choose dl dt{margin-top:5px;}
+.act-online .choose dl dd{line-height:27px;}
+.act-online .choose dl dd select{width:150px;height:28px;}
+.act-online .choose dl dd input{padding:3px;}
+.act-online .choose .choose-btn{
+    margin:30px 0 0 20px;
+    color: #000000;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: normal;
+    text-align: center;
+    text-decoration: none;
+    position: relative;
+    border-radius:0;
+    border: 2px outset buttonface;
+    padding:5px;
+    width:90px;
+    display:inline-block;
+    box-sizing: content-box;
+    background-color: buttonface;
+}
+.act-online .choose dl dd span{margin-right:30px;}
+.act-online button.online{
+    width:130px;
+    height:40px;
+    line-height:40px;
+    border:solid #000 1px;
+    text-align:center;
+}
+.act-online .table .white{
+    overflow: inherit;
+    height: 42px;
+}
+.act-online .table .white li{position:relative;}
+.act-online .table .white li .sh-box,
+.act-online .table .white li .cancle-box{
+    position:absolute;
+    top:-30px;
+    left:229px;
+    border:solid #000 1px;
+    background:#fff;
+    width:300px;
+    height:100px;
+    padding:10px;
+    z-index:9;
+    display:none;
+}
+.act-online .table .white li .refuse-box{
+    position:absolute;
+    top:-30px;
+    left:566px;
+    border:solid #000 1px;
+    background:#fff;
+    width:300px;
+    height:auto;
+    padding:10px;
+    z-index:9;
+    display:none;
+}
+.act-online .table .white li .sh-box p,.act-online .table .white li .cancle-box p{margin:0 0 30px 0;}
+.act-online .table .white li .sh-box button,.act-online .table .white li .refuse-box button,
+.act-online .table .white li .cancle-box button{
+    width:70px;
+    padding:5px 0;
+    border:solid #000 1px;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    background:#fff;
+    margin:0 10px;
+}
+.act-online .table .white li .sh-box button.close,.act-online .table .white li .refuse-box button.close{
+    position:absolute;
+    top:10px;
+    right:10px;
+    padding:3px 15px;
+    background:#C75050;
+    width:auto;
+    border-radius:0;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    -o-border-radius:0;
+    color:#fff;
+}
+.act-online .table .white li .refuse-box button.close{
+    top:-12px;
+}
+.act-online .table .white li .refuse-box p{
+    margin:10px 0 5px 0;
+}
+.act-online .table .white li .refuse-box input{width:285px;}
+.act-online .table .white li .refuse-box button{
+    margin:20px auto 0 auto;
+    display: block;
+}
+/*活动数据统计*/
+.total-data .table{width:663px;}
+.total-data .table ul li.li-sm{width:250px;}
+/*报名审核*/
+.join-sh .table ul li{
+    width:180px;
+    text-align:center;
+    height:45px;
+    padding:10px 0;
+}
+.join-sh .table ul{
+    position:relative;
+    height: 65px;
+    overflow: inherit;
+}
+.join-sh .table ul li img{vertical-align:middle;}
+.join-sh .table ul li .pass-box{
+    position:absolute;
+    top: -30px;
+    right: 135px;
+    width:250px;
+    height:150px;
+    border:solid #3079EC 1px;
+    background:#fff;
+    z-index: 9;
+    display:none;
+}
+.join-sh .table ul li .pass-box h6{
+    text-align:left;
+    background:#3079EC;
+    color:#fff;
+    padding:5px;
+}
+.join-sh .table ul li .pass-box p{
+    margin:20px 0 20px 0;
+}
+.join-sh .table ul li .pass-box button{
+    border:solid #3079EC 1px;
+    background:#eee;
+    margin:0 15px;
+    padding:5px 10px;
+}
+/*报名审核-查看*/
+.join-detail{padding-left:190px;}
+.join-detail h3{
+    border-bottom:dotted 2px #000;
+    margin-bottom:20px;
+    width:1000px;
+}
+.join-detail .info{
+    width:1100px;
+    border:solid #000 1px;
+    margin-top:20px;
+}
+.join-detail .info h6{
+    width:70px;
+    background:#fff;
+    margin:-10px 0 0 10px;
+    text-align:center;
+}
+.join-detail .info p{
+    padding:0 0 0 60px;
+    margin:10px 0;
+}
+.join-detail .info p i{
+    font-style: normal;
+    color:#5674AF;
+    margin-left:10px;
+}
+/*权限管理*/
+.limit-mana{
+    width:1100px;
+    border:solid #000 1px;
+}
+.limit-mana .limit-left{float:left;padding:10px;}
+.limit-mana .limit-left h3{
+    border-bottom:none;
+    width:auto;
+    margin:0 20px 0 0;
+}
+.limit-mana .limit-left dl{height:30px;margin:10px 0;}
+.limit-mana .limit-left dl dt,.limit-mana .limit-left dl dd{float:left;}
+.limit-mana .limit-left dl dt{margin:0 40px 0 10px;}
+.limit-mana .limit-left dl dd a{margin-right:20px;}
+.limit-mana .limit-left dl dd{display:none;position:relative;width:400px;}
+.limit-mana .limit-left dl dd.search{display:block;width: 280px;}
+.limit-mana .limit-left dl dd.search input{width:250px;padding:3px;}
+.limit-mana .limit-left dl dd .manager-box,.limit-mana .limit-left dl dd .dis-box{
+    border:solid 1px #000;
+    padding:10px;
+    position:absolute;
+    top:30px;
+    left:140px;
+    background:#fff;
+    display:none;
+    z-index:9;
+}
+.limit-mana .limit-left dl dd .dis-box{
+    left:180px;
+}
+.limit-mana .limit-left dl dd .manager-box button,.limit-mana .limit-left dl dd .dis-box button{
+    background-image: url("../images/transparent.gif");
+    color: #000000;
+    font-size: 13px;
+    height: 25px;
+    text-align: center;
+    text-decoration: none;
+    width: 70px;
+    margin:20px 15px 0 20px;
+}
+.limit-mana .limit-right{
+    float: right;
+    width: 200px;
+    border: solid #000 1px;
+    margin:-20px 100px 0 0;
+    padding:10px;
+}
+.limit-mana .limit-right h2{
+    display:inline-block;
+    width:130px;
+    margin-bottom:20px;
+}
+.limit-mana .limit-right dl{overflow:hidden;margin:20px 0 0 0;}
+.limit-mana .limit-right dl dt,.limit-mana .limit-right dl dd{display: block;
+    float: left;
+    width: 100px;}
+.limit-mana .limit-right dl dt{margin: 0;
+    width: 80px;}
+.limit-mana .limit-left .page{
+    margin:20px 0 0 40px;
+}
+.limit-mana .limit-left .page ul{overflow:hidden;}
+.limit-mana .limit-left .page ul li{
+    float:left;
+}
+.limit-mana .limit-left .page ul li a{
+    display:block;
+    padding:3px;
+    text-decoration:underline;
+}
+.limit-mana .limit-left .page ul li.active a{
+    text-decoration: none;
+    color:#000;
+}
+/*编辑小组*/
+.edit-group h3{margin-bottom:20px;}
+.edit-group form dl dt h3{
+    border-bottom: none;
+    width:auto;
+    padding-bottom:0;
+}
+.edit-group form dl dd{margin-right:20px;}
+.edit-group form ul{margin:20px 0 0 40px;}
+.edit-group form dl dd ul{
+    margin:0;
+    border:solid 1px #ccc;
+    display:none;
+}
+.edit-group form dl dd ul li{
+    margin:0;
+}
+.edit-group form ul li{margin:10px 0;}
+.edit-group form{
+    border:solid #000 1px;
+    width:1100px;
+    margin:20px 0 0 0;
+    padding:0 0 20px 0;
+}
+.edit-group form dl dd span{margin:0 5px;}
+.edit-group form dl dd span img{
+    width:20px;
+    vertical-align: middle;
+}
+.edit-group form dl dd span button{
+    width:auto;
+    border:none;
+    margin-left:10px;
+    padding:0;
+    display:none;
+}
+/*活动分类管理*/
+.act-sort .table{width:517px;}
+.act-sort .table ul li button img{
+    width:22px;
+}
+.act-sort .table ul li button{
+    margin:5px 10px 0 0;
+    border: none;
+    background: none;
+}
+.act-sort .table ul li a{margin:0 10px 0 0;}
+.act-sort .table .add{
+    display:block;
+    text-align:center;
+    font-size:18px;
+    height:40px;
+    line-height:40px;
+    border-top:solid #000 1px;
+//border-left:solid #000 1px;
+}
+.act-sort .reserve button{
+    border:solid #000 1px;
+    background:#fff;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    text-align:center;
+    padding:5px 30px;
+    margin:20px 220px 0;
+}
+.act-sort .table ul li{position:relative;}
+.act-sort .table ul li .edit-box{
+    border:solid #000 1px;
+    padding:20px 10px;
+    position:absolute;
+    top: 33px;
+    left: -38px;
+    background:#fff;
+    z-index:9;
+    width:280px;
+    display:none;
+}
+.act-sort .table ul li .edit-box button.reserve{
+    border: solid #000 1px;
+    background: #fff;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -o-border-radius: 4px;
+    text-align: center;
+    padding: 5px 30px;
+    margin: 0 0 0 15px;
+}
+.act-sort .table ul{
+    height:41px;
+    overflow: inherit;
+}
+.delete-box{
+    border:solid #000 1px;
+    padding:20px 10px;
+    position:absolute;
+    top: 33px;
+    left: -20px;
+    background:#fff;
+    z-index:9;
+    width:280px;
+    display:none;
+}
+.delete-box button,.act-sort .table ul li .delete-box button{
+    color: #000000;
+    height: 25px;
+    text-align: center;
+    text-decoration: none;
+    width: 70px;
+    border: 2px outset buttonface;
+    border-image-repeat: initial;
+    background-color: buttonface;
+}
+/*推广渠道管理*/
+.promote-place .table{width:380px;}
+.promote-place .reserve button{margin:20px 150px 0;}
+/*操作日志*/
+.log .table{width:780px;}
+/*新增广告位*/
+.add-Ad dl{margin-left:0;}
+.add-Ad dl dt{font-weight:bold;}
+.add-Ad dl dd input,.add-Ad dl dd select{width:230px;}
+.add-Ad dl dd input.num{width:80px;margin-right:20px;}
+#uploadPreview {
+    width:230px;
+    height: 168px;
+    background-position: center center;
+    background-size: contain !important;
+    border: 1px solid #666;
+    display: block;
+    margin-top:5px;
+}
+/*广告位管理*/
+.ad-manage .table{width:866px;}
+.ad-manage .table ul li{width:190px;}
+.ad-manage .table ul li.li-xs{width:110px;}
+.ad-manage .table ul li a{margin:0 10px;}
+/*置顶*/
+.top dl{
+    overflow:hidden;
+    margin:50px 40px;
+}
+.top button{
+    padding:5px 10px;
+    display:block;
+    margin:20px 0 0 200px;
+}
+.top dl dt,.top dl dd{float:left;}
+.top dl dt{margin:0 50px 0 0;}
+.top dl dd input{margin:0 10px;}
+/*修改权限*/
+.modify-limit h3{margin-bottom:20px;}
+.modify-limit form{margin-top:20px;}
+.modify-limit form dl dt h3{
+    border-bottom:none;
+    width:auto;
+    margin-bottom:0;
+}
+.modify-limit form dl{
+    border-top:solid #000 1px;
+    width:1000px;
+    margin-top:0;
+    height:60px;
+    line-height:60px;
+}
+.modify-limit form dl dd{margin:0 10px;}
+.modify-limit button{
+    margin:20px 0 0 30px;
+}
+/*新增用户*/
+.add-person form dl{margin:10px 0 0 0;}
+/*修改广告位*/
+.edit-Ad dl{margin-left:0;}
+.edit-Ad dl dt{font-weight:bold;}
+.edit-Ad dl dd input,.edit-Ad dl dd select{width:200px;height:25px;}
+.edit-Ad dl dd input.num{width:60px;margin-right:10px;}
+.edit-info{margin-top:20px;}
+.edit-info dl{overflow:hidden;margin-top:10px;margin-left:0px;}
+.edit-info dl dt,.edit-info dl dd{float:left;}
+.edit-info dl dt{width:80px;text-align:center;}
+.edit-info button{
+    padding:7px 0;
+    text-align:center;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    -o-border-radius:4px;
+    background:none;
+    float:right;
+    margin-right:50px;
+    border:solid black 1px;
+    width:100px;
+    background-color:#2bb8aa;
+}
+/*ajax页面*/
+.paginate_button{float:left;}

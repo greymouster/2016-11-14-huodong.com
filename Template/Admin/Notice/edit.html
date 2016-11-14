@@ -1,0 +1,19 @@
+<include file="Common/main-header" />
+   <div class="new-info modify-info" style="margin-left:-150px;">
+        <h3>最新公告</h3>
+        <a href="{:U('Notice/index')}">最新公告</a>>><a href="javascript:;">修改公告</a>
+        <form onsubmit="return false;">
+            <input type="text" name="title" value="{$data.title}" placeholder="白皮书活动开始了" />
+			<input type="hidden" name="id" value="{$data.id}">
+            <div class="news">
+                <textarea name="content" >{$data.content}</textarea>
+            </div>
+            <dl>
+                <dt><input class="acement-edit" type="submit" value="修改" /> </dt>
+                <dd><button class="delete acement-delete">删除</button></dd>
+                <dd><button class="cancel acement-cancel" onclick="window.history.go(-1)">取消</button></dd>
+            </dl>
+	    </form>
+    </div>
+</body>
+</html>

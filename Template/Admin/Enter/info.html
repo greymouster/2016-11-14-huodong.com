@@ -1,0 +1,20 @@
+<include file="Common/main-header" />
+    <div class="join-detail" style="margin-left:-150px;">
+        <h3>报名审核</h3>
+        <a href="javascript:;">报名审核</a>>><a href="javascript:;">查看基本信息</a>
+        <div class="info basic-info">
+            <h6>基本信息</h6>
+            <p>姓名:<i>{$data.user_name}</i></p>
+            <p>手机：<i>{$data.phone}</i></p>
+            <p>Email:<i>{$data.email}</i></p>
+            <volist name="info" id="vo">
+                <if condition="$vo neq '' and ($vo neq '&')">
+                   <p>{$key}:<i>{$vo}</i></p>
+                </if>
+            </volist>
+         </div>
+    </div>
+</body>
+<script>
+</script>
+</html>

@@ -1,0 +1,30 @@
+<include file="Common/main-header" />
+    <div class="info-manage info-url act-sort" style="margin-left:-150px;">
+        <h3>活动分类管理</h3>
+        <div class="table">
+            <ul class="thead">
+                <li class="li-xs">排序</li>
+                <li class="li-sm">分类</li>
+                <li>顺序调整</li>
+                <li>操作</li>
+            </ul>
+			<foreach name="data" item="vo" key="k">
+            <ul>
+                <li class="li-xs cate-id">{$k+1}</li>
+                <li class="li-sm">{$vo.cat_name}</li>
+                <li>
+				    
+                    <button class="cate-sort-asc" sort-number="{$vo.sort_number}"><img src="__PUBLIC__/Admin/images/u75.png" /> </button>
+                    <button class="cate-sort-desc" sort-number="{$vo.sort_number}"><img src="__PUBLIC__/Admin/images/u751.png"/> </button>
+                </li>
+                <li>
+                    <a class="edit cate-edit" data-name="{$vo.cat_name} "style="cursor:pointer" data-id="{$vo.id}">编辑</a>
+                    <a class="delete cate-delete" style="cursor:pointer" data-id="{$vo.id}">删除</a>
+                </li>
+            </ul>
+			</foreach>
+            <a href="javascript:;" class="add cate-add" style="cursor:pointer">新增</a>
+        </div>
+    </div>
+</body>
+</html>

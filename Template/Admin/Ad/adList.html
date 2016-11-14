@@ -1,0 +1,48 @@
+<include file="Common/main-header" />
+	<div class="info-manage info-url ad-manage" style="margin-left: -150px;height:700px;">
+        <h3>广告位管理</h3>
+        <div class="table">
+            <ul class="thead">
+                <li class="li-xs">ID号</li>
+                <li class="li-sm">广告标题</li>
+                <li>类型</li>
+                <li>创建时间</li>
+                <li>操作</li>
+            </ul>
+            <foreach name="data" item="vo" key="k">
+            <ul>
+                <li class="li-xs ad-id">{$thispage+$k+1}</li>
+                <li class="li-sm">{$vo.ad_name}</li>
+                <li>{$vo.media_type}</li>
+                <li>{$vo.ad_time}</li>
+                <li>
+                    <a href="javascript:;" class="ad-edit" data-url="{:U('Ad/editAd',array('ad_id'=>$vo[ad_id]))}" >修改</a>
+                    <a href="javascript:;" class="ad-delete" data-id="{$vo.ad_id}">删除</a>
+                </li>
+            </ul>
+			</foreach>
+
+        </div>
+        <notempty name='data'>
+		<div class="page-list-link">
+            {$page}
+        <div>
+		</notempty>
+    </div>
+</body>
+</html>
+<script>
+//回调函数
+function call_back(msg,info){
+	if(msg>0){
+		layer.msg(info, {icon: 1});
+		layer.closeAll('iframe');
+        setTimeout(function(){
+            window.location.reload();
+        },1500);
+	}else{
+		layer.alert(info, {icon: 3});
+		//layer.closeAll('iframe');
+	}
+}
+</script>

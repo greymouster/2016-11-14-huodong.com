@@ -1,0 +1,85 @@
+<include file="Common/main-header" />
+<div class="account-info modify-limit add-person" style="margin-left:-150px;height:1000px;">
+        <h3>权限管理</h3>
+        <a href="javascript:;">权限管理</a>>><a href="javascript:;">{$Think.session.realname}</a>
+        <form id="edit-auth-form" action="" method="">
+            <input type="hidden" name="admin_id" value="{$Think.get.id}">
+             <b>管理员名称:</b><input type="text"  name="username"  value="{$realname}" style="text-align:center;" disabled="disabled"/>
+            <dl>
+                <dt>
+                    <input class="checkAllItem" type="checkbox" />特别权限
+                </dt>
+                <dd>（管理员，全站通行）</dd>
+            </dl>
+            <foreach name="parentAuth" item="v">
+            <dl>
+                <dt><h3>{$v.auth_name}：</h3></dt>
+                <dd><input class="checkAll" type="checkbox"  />全选</dd>
+               <foreach name="subAuth" item="vv">
+               <if condition="$v['id'] == $vv['parent_id'] ">
+                   <dd><input class="checkItem" type="checkbox" name="act_list[]" value="{$vv.id}"  <?php if(strpos(','.$authList.',',','.$vv['id'].',') !== false) echo 'checked="checked"'?> />{$vv.auth_name}</dd>
+                </if>
+                </foreach>
+                <!-- <dd><input class="checkItem" type="checkbox" name="checkbox" />修改&新增公告</dd> -->
+            </dl>
+            </foreach>
+    
+            <button type="button" class="edit-auth">提交权限</button>
+        </form>
+    </div>
+</body>
+<script>
+    $(function(){
+        $('.account').click(function(){
+            $(this).children('ul').css('display','block');
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.account ul').css('display','none');
+        })
+        /*全选*/
+        $('.modify-limit form dl dd .checkAll').click(function(){
+            var flag=$(this).prop('checked');
+            $(this).parent().nextAll('dd').find('.checkItem').prop('checked',flag);
+            $('.modify-limit form dl dd .checkItem').click(function(){
+                var flag2=$(this).prop('checked');
+                if(flag==true){
+                    $(this).parent().siblings('dd').find('.checkAll').prop('checked',flag2);
+                }
+            })
+        })
+        $('.modify-limit form dl dt .checkAllItem').click(function(){
+            var flag3=$(this).prop('checked');
+            $(this).parent().parent().siblings().find('dd').find('input').prop('checked',flag3);
+            $('.modify-limit form dl dd .checkItem').click(function(){
+                var flag4=$(this).prop('checked');
+                $(this).parent().siblings('dd').find('.checkAll').prop('checked',flag4);
+            })
+        })
+
+        $(".edit-auth").click(function(){
+            var data = $("#edit-auth-form").serialize();
+            $.ajax({
+                url: '/index.php/Admin/System/ajaxEditAuth',
+                data: data,
+                type: 'POST',
+                dataType: 'json',
+                success: function(data) {
+                    if(data.status == 0){
+                        layer.msg(data.info,{icon:5});
+                    }
+                    if(data.status == 1){
+                        layer.msg(data.info,{icon:6});
+                        setTimeout(function(){
+                            window.location.href = "{:U('System/authInfo')}";
+                        },1500);
+                    }
+                }
+            });
+            
+
+        });
+         
+    })
+</script>
+</html>

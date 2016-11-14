@@ -1,0 +1,213 @@
+
+<include file="Common/main-header" />
+<link rel="stylesheet" href="__PUBLIC__/Admin/css/style.css">
+<script src="__PUBLIC__/Admin/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
+<script src="__PUBLIC__/Admin/js/layer/extend/layer.ext.js"></script>
+<script src="__PUBLIC__/Admin/js/ancement.js"></script>
+<!--日期插件start-->
+<link rel="stylesheet" href="__PUBLIC__/Admin/Plugins/datetimepicker/datetimepicker.css">
+<script src="__PUBLIC__/Admin/Plugins/datetimepicker/datetimepicker.js"></script>
+<!--日期插件end-->
+<script src="__PUBLIC__/Admin/Plugins/jqueryform/jquery.form.js"></script>
+<!--ueditor-->
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/Plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/Plugins/ueditor/ueditor.all.min.js"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/Plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="publish-act">
+        <div class="act-info" style="margin-left:-150px;">
+            <form id="editActivity" class="base-info" action="{:U('Activity/edit')}" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="act_id" value="{$data['act_id']}">
+				<p class="title">填写基本资料</p>
+                <dl>
+                    <dt><h2>活动名称<span>*</span></h2></dt>
+                    <dd><input type="text" name="act_name" value="{$data.act_name}"/> </dd>
+                    <dd><h2>负责人：<i>{$Think.session.realname}</i></h2></dd>
+					<input type="hidden" name="act_charge_name" value="{$Think.session.realname}">
+                </dl>
+                <dl>
+                    <dt><h2>活动地点<span>*</span></h2></dt>
+                    <dd>
+                        <select name="place_id">
+                            <option selected="selected" value="0">选择城市</option>
+							<foreach name="placeData" item="vo">
+                            <option value="{$vo.id}"<if condition="$vo['id'] eq $data['place_id']">selected="selected"</if>>{$vo.place_name}</option>
+							</foreach>
+                        </select>
+                    </dd>
+                    <dd><input type="text" placeholder="填写具体的活动地点" value="{$data['spec_address']}" name="spec_address"/></dd>
+                </dl>
+                <dl>
+                    <dt><h2>活动分类<span>*</span></h2></dt>
+                    <dd style="width:800px">
+                       <?php foreach($cateData as $k=>$v):
+                             if(strpos(','.$data['cat_id'].',',','.$v['id'].',')!==false)
+                               $checked = "checked='checked'";
+                             else
+                               $checked = "";
+                        ?>
+                         <input type="checkbox" name="cat_id[]" <?php echo $checked?> value="<?php echo $v['id']?>">&nbsp; <?php echo $v['cat_name']?>&nbsp;
+                        <?php endforeach;?>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><h2>活动费用<span>*</span></h2></dt>
+                    <dd><input type="text" name="act_cost" value="{$data['act_cost']}"/>元</dd>
+                </dl>
+                <dl>
+                    <dt><h2>活动是否需报名审核：</h2></dt>
+                    <dd><input type="radio" name="act_status" value="0" <if condition="$data['act_status'] eq 0">checked="checked"</if>/>否</dd>
+                    <dd><input type="radio" name="act_status" value="1" <if condition="$data['act_status'] eq 1">checked="checked"</if>/>是</dd>
+                </dl>
+                <dl>
+                    <dt><h2>活动时间<span>*</span></h2></dt>
+                    <div class="time">
+                        <input type="text" name="act_start_date"  value="{$data['act_start_date']}"  class="datetimepicker-date"  placeholder="活动开始日期" />
+                        <input type="text" name="act_start_time" value="{$data['act_start_time']}"  class="datetimepicker-time" placeholder="开始时间" />
+                        到
+                        <input type="text" name="act_end_date"  value="{$data['act_end_date']}"  class="datetimepicker-date" placeholder="活动结束日期" />
+                        <input type="text" name="act_end_time" value="{$data['act_end_time']}" class="datetimepicker-time" placeholder="结束时间" />
+                    </div>
+
+                </dl>
+                <dl>
+                    <dt><h2>活动上线时间<span>*</span></h2></dt>
+                    <dd><input type="radio" class="act-online" name="act_online" value="1" <if condition="$data['act_online'] eq 1">checked="checked"</if>/>审核后立即上线</dd>
+                    <dd><input type="radio" class="act-online" name="act_online" value="2" <if condition="$data['act_online'] eq 2">checked="checked"</if>/>审核通过后定时上线</dd>
+                    <if condition="$data['act_online'] eq 2">
+                        <dd><input type="text" class="time datetimepicker-date" name="act_date" value="{$data['date_time']?$data['act_date'] : ''}" placeholder="请选择上线日期" /></dd>
+                        <dd><input type="text" class="time datetimepicker-time" name="act_time" value="{$data['date_time']?$data['act_time'] : ''}" placeholder="请选择上线时间" /></dd>
+                    <else />
+                        <dd><input type="text" class="time datetimepicker-date" name="act_date" value="" placeholder="请选择上线日期" /></dd>
+                        <dd><input type="text" class="time datetimepicker-time" name="act_time" value="" placeholder="请选择上线时间" /></dd>
+                    </if>
+
+                </dl>
+            <div class="base-info overview">
+                <p class="title">活动概览图</p>
+                <div class="up-pic">
+                    <input style="width:530px;margin-top:52px;" id="uploadImage" name="act_file" type="file" value="上传图片"/>
+                    <p style="text-align: left; font-size: 20px; color:#ff3cd9;">上传尺寸限制为720px X 405px;上传大小最大为2M</p>
+                </div>
+
+                <div id="uploadPreview" style="background-image:url({$data['act_file']})"></div>
+            </div>
+			<div class="base-info details">
+                <p class="title">活动描述</p>
+                <textarea id="act_how_part" name="act_how_part">{$data['act_how_part']}</textarea>
+            </div>
+            <div class="base-info details">
+                <p class="title">活动详情</p>
+                <textarea id="edit_desc" name="act_desc">{$data['act_desc']}</textarea>
+            </div>
+
+                <!--<p class="title">如何参加</p>-->
+                <!--<textarea id="edit_how_part" name="act_how_part">{$data['act_how_part']}</textarea>-->
+
+
+		</form>
+            <div class="bottom">
+
+                <button type="button" class="yulan" data-id="{$data['act_id']}">预览</button>
+                <button type="button" style="margin-top:20px;" class="edit-file-desc">保存修改</button>
+                <button type="button" class="save-file-desc" data-id="{$data['act_id']}" data-version="{$data['act_version']}">下一步</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+/*活动时间弹框*/
+$('.publish-act .base-info dl dd input[name="act_time_status"]').click(function(){
+	var flag=$(this).prop('checked');
+	if(flag==true){
+		$(this).parent().find('.box').show();
+		$(this).parent().siblings().find('.box').hide();
+		//清空值
+		$(this).parent().siblings().find(".box input[type='text']").val('');
+		
+	}
+})
+$('.act-online').click(function(){
+   $(this).parent().parent().find('.time').val('');
+});
+/*图片预览*/
+$("#uploadImage").on("change", function(){
+
+     //alert(this.files[0].size/1024/1024 + "Mb");
+	// Get a reference to the fileList
+	var files = !!this.files ? this.files : [];
+	// If no files were selected, or no FileReader support, return
+	if (!files.length || !window.FileReader) return;
+	// Only proceed if the selected file is an image
+	if (/^image/.test( files[0].type)){
+		// Create a new instance of the FileReader
+		var reader = new FileReader();
+		// Read the local file as a DataURL
+		reader.readAsDataURL(files[0]);
+		// When loaded, set image data as background of div
+		reader.onloadend = function(){
+			$("#uploadPreview").css("background-image", "url("+this.result+")");
+		}
+	}
+	else {
+		alert('请输入正确的图片格式');
+	}
+});
+
+$(function(){
+     $(".datetimepicker-time").datetimepicker({
+	    datepicker:false,
+		format : 'H:i',
+		step :5
+	 
+	 });
+	 $('.datetimepicker-date').datetimepicker({
+		lang: 'ch',
+		onGenerate: function(ct) {
+            $(this).find('.xdsoft_date').toggleClass('xdsoft_disabled');
+        },
+		timepicker: false,
+		format: 'Y-m-d',
+		formatDate: 'Y-m-d',
+		minDate: '-1970/01/02', // yesterday is minimum date
+		maxDate: '+1970/01/02' // and tommorow is maximum date calendar
+	});
+	//在线编辑器
+     window.UEDITOR_HOME_URL = "/Public/Admin/Plugins/ueditor/";
+     UE.getEditor('edit_desc',{initialFrameWith:'100%',initialFrameHeight:500,autoHeightEnabled:false});
+	 UE.getEditor('act_how_part',{initialFrameWith:'100%',initialFrameHeight:500,autoHeightEnabled:false});
+
+
+   $(".next").click(function(){
+       window.location.href = "{:U('Activity/setForm')}";
+   });
+})
+</script>
+<script>
+
+    $(".yulan").click(function(){
+        var actId = $(this).data('id');
+        layer.open({
+            type: 2,
+            title: '编辑活动',
+			offset:'65%',
+            shadeClose: true,
+            shade: 0.5,
+            area: ['640px', '750PX'],
+            content: '/index.php/Admin/Activity/actPreview/act_id/'+actId,
+        });
+    });
+    $(".save-file-desc").click(function(){
+        var actId = $(this).data('id');
+        var version = $(this).data('version');
+		if(version>0){
+		   window.location.href = "{:U('Activity/saveForm','',false)}/act_id/"+actId+"/version/"+version;
+		}else{
+		   window.location.href = "{:U('Activity/setForm','',false)}/act_id/"+actId;
+		}
+          
+    });
+</script>

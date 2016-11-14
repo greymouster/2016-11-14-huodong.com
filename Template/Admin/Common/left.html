@@ -1,0 +1,45 @@
+
+<div class="home-left">
+        <ul>
+            <foreach name="parentAuth" item="v">
+            <li><h3>{$v['auth_name']}</h3></li>
+              <foreach name="subAuth" item="vv">
+               <if condition="$v['id'] == $vv['parent_id']">
+
+                   <li onclick="makecss(this,{$vv['id']})" id="menu_{$vv.id}"><a href="<?php echo U($vv['module_name'].'/'.$vv['controller_name'].'/'.$vv['acttion_name']); ?>" target='rightContent'>{$vv['auth_name']}</a></li>
+                   
+                </if>
+             </foreach>
+            </foreach>
+            
+<!--            <li><h3>活动公告</h3></li>
+            <li><a href="{:U('Notice/index')}">最新公告</a> </li>
+            <li><h3>活动推广</h3></li>
+            <li><a href="{:U('Activity/release')}">发布新活动</a> </li>
+            <li><a href="{:U('Activity/actMessage')}">活动信息管理</a> </li>
+            <li><a href="{:U('Activity/myActMessage')}">我推广的活动</a> </li>
+            <li><a href="{:U('Activity/myQRcode')}">我的二维码</a> </li>
+            <li><h3>活动上线</h3></li>
+            <li><a href="{:U('Online/index')}">活动上线审核</a> </li>
+            <li><a href="{:U('Online/totalData')}">活动数据统计</a> </li>
+            <li><h3>报名管理</h3></li>
+            <li><a href="{:U('Enter/index')}">报名审核</a> </li>
+            <li><h3>系统管理</h3></li>
+            <li><a href="{:U('System/authInfo')}">权限管理</a> </li>
+            <li><a href="{:U('System/category')}">活动分类管理</a> </li>
+            <li><a href="{:U('System/place')}">活动地点管理</a> </li>
+            <li><a href="{:U('System/channel')}">推广渠道管理</a> </li>
+            <li><a href="log.html">操作日志</a> </li>
+            <li><h3>广告位</h3></li>
+            <li><a href="{:U('Ad/ad')}">新增广告位</a> </li>
+            <li><a href="{:U('Ad/adList')}">广告位管理</a> </li>-->
+        </ul>
+</div>
+<script>
+    var tmpmenu = 1;
+    function makecss(obj,mod_id){
+	$('#menu_'+tmpmenu).children('a').removeClass('active');
+	$(obj).children('a').addClass('active');
+	tmpmenu = mod_id;
+}
+</script>

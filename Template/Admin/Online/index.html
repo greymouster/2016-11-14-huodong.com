@@ -1,0 +1,268 @@
+<include file="Common/main-header" />
+<!--日期插件start-->
+ <link rel="stylesheet" href="__PUBLIC__/Admin/Plugins/datetimepicker/datetimepicker.css">
+ <script src="__PUBLIC__/Admin/Plugins/datetimepicker/datetimepicker.js"></script>
+<!--日期插件end-->
+    <div class="info-manage act-online" style="margin-left:-150px;">
+        <h3>活动上线审核</h3>
+        <div class="choose">
+            <p class="p-choose">查询条件</p>
+            <form action="{:U('Online/index')}" method="get">
+            <dl>
+                <dt>选择组：</dt>
+                <dd>
+                    <select name="group_id">
+                        <option value="">--小组名称--</option>
+                        <foreach name="groupData" item="vo">
+                            <option value="{$vo.id}" <if condition="$Think.get.group_id eq $vo['id']">selected="selected"</if>>{$vo.group_name}</option>
+                        </foreach>
+                    </select>
+                </dd>
+            </dl>
+            <dl>
+                <dt>活动地点：</dt>
+                <dd>
+                 <?php foreach($placeData as $key=>$v1):?>
+                    <input type="checkbox" name="placeid[]" 
+                         <?php foreach(I('get.placeid') as $k=>$v){
+                             if($v == $v1['id']){
+                                 echo  "checked='checked'";
+                             }
+                          }?>
+                    value="<?php echo $v1['id']?>"/><?php echo $v1['place_name']?>&nbsp;&nbsp;&nbsp; 
+                <?php endforeach;?> 
+                  <!--<foreach name="placeData" item="v1">   
+                    <input type="checkbox" name="placeid[]" value="{$v1.id}"/>{$v1.place_name}&nbsp;&nbsp;&nbsp;
+                  </foreach>-->
+                </dd>
+            </dl>
+            <dl>
+                <dt>活动时间：</dt>
+                <dd><span>从</span><input type="text" placeholder="开始时间" class="datetimepicker-date" name="start_date" value="{$Think.get.start_date}"/></dd>
+                <dd><span>到</span><input type="text" placeholder="结束时间" class="datetimepicker-date" name="end_date" value="{$Think.get.end_date}"/> </dd>
+            </dl>
+            <dl>
+                <dt>关键字：</dt>
+                <dd><input type="text" value="{$Think.get.actname}" placeholder="请输入活动名称" name="actname" /> </dd>
+            </dl>
+            <dl>
+                <dt>活动类型：</dt>
+                <dd>
+				   <?php foreach($cateData as $key=>$v1):?>
+                        <input type="checkbox" name="cateid[]" 
+                            <?php foreach(I('get.cateid') as $k=>$v){
+                                if($v == $v1['id']){
+                                  echo  "checked='checked'";
+                                }
+                            }?>  value="<?php echo $v1['id']?>"/><?php echo $v1['cat_name']?>&nbsp;&nbsp;&nbsp; 
+                     <?php endforeach;?> 
+                    <!--<foreach name="cateData" item="v">
+                    <input type="checkbox" name="catid[]" value="{$v.id}"/>{$v.cat_name}&nbsp;&nbsp;&nbsp;
+                    </foreach>-->
+                </dd>
+            </dl>
+            <dl>
+                <dt>活动状态：</dt>
+                <dd>
+                    <select name="status">
+                        <option value="">全部活动状态</option>
+                        <!--<option value="1" <if condition="$Think.get.status eq 1">selected="selected"</if>>未发布</option>-->
+                        <option value="2" <if condition="$Think.get.status eq 2">selected="selected"</if>>待审核</option>
+                        <option value="7" <if condition="$Think.get.status eq 7">selected="selected"</if>>审核通过</option>
+                        <option value="4" <if condition="$Think.get.status eq 4">selected="selected"</if>>已上线</option>
+                        <option value="5" <if condition="$Think.get.status eq 5">selected="selected"</if>>已结束</option>
+                        <option value="3" <if condition="$Think.get.status eq 3">selected="selected"</if>>已下线</option>
+                        <option value="6" <if condition="$Think.get.status eq 6">selected="selected"</if>>驳回</option>
+                    </select>
+                </dd>
+            </dl>
+            <input class="choose-btn" type="submit" value="筛选" />
+        </form>
+        </div>
+        <button class="online">批量审核上线</button>
+        <div class="table">
+            <ul class="thead">
+                <li>
+                    <input  id="checkAll" name="checkAll" type="checkbox" />全选
+                </li>
+                <li>活动名称</li>
+                <li>活动地点</li>
+                <li>活动时间</li>
+                <li>活动类型</li>
+                <li>活动状态</li>
+				<li style="width:85px;">活动负责人</li>
+				<li style="width:60px;">置顶顺序</li>
+            </ul>
+            <foreach name="data" item="vo">
+                <ul class="gray">
+                    <li><input name="chkItem" type="checkbox" class="aa" value="{$vo.act_id}" /> </li>
+                    <li>{$vo.act_name}</li>
+                    <li>{$vo.place_name}</li>
+                    <li>{$vo.act_start_date}-{$vo.act_end_date}</li>
+                    <li>{$vo.cat_name}</li>
+                    <if condition="$vo.act_current_status eq 6">
+                         <li style="color:red;">{$vo.current_status}:{$vo.act_reason}</li>
+                    <else/>
+                         <li class="current" current-status="{$vo.act_current_status}">{$vo.current_status}</li>
+                    </if>
+					<li style="width:85px">{$vo.act_charge_name}</li>
+					<if condition="$vo.act_is_top eq 50">
+                         <li style="width:60px;">0</li>
+                    <else/>
+                         <li style="width:60px;">{$vo.act_is_top}</li>
+                    </if>
+
+                </ul>
+                <ul class="white">
+                    <li>
+                        <span>{$vo.act_success_time}</span>
+                        <a href="javascript:;" class="select_act" act-id="{$vo.act_id}">查看</a>
+                        <!--根据状态显示不同的样式-->
+                        <if condition="$vo.current_status eq '审核通过'">
+                            <a href="javascript:;" act-id="{$vo.act_id}" class="sh reback-sh">撤销审核</a>
+                        </if>
+                        <if condition="$vo.act_current_status eq 2">
+                            <a href="javascript:;" act-id="{$vo.act_id}" class="sh check-sh">审核</a>
+                        </if>
+                        <if condition="($vo.act_current_status neq 2) and ( $vo.act_current_status neq 3)">
+                              <a href="javascript:;" style="color:gray;">审核</a>
+                        </if>
+                        <if condition="$vo.act_current_status eq 4">
+                            <a href="{:U('Activity/actData',array('act_id'=>$vo['act_id']))}">查看活动数据</a>
+                        <else/>
+                            <a href="javascript:;" style="color:gray;">查看活动数据</a>
+                        </if>
+                        <if condition="$vo.act_is_top neq 50">
+                            <a href="javascript:;" act-id="{$vo.act_id}" class="top-b">取消置顶</a>
+                        </if>
+                        <if condition="$vo.current_status eq '已上线' && $vo.act_is_top eq '50' ">
+                             <a href="javascript:;" data-url="{:U('Online/isTop',array('act_id'=>$vo['act_id']))}" class="top-a">置顶</a>
+                        </if>
+                        <!--两个弹框
+                        <div class="sh-box">
+                            <p>是否审核通过</p>
+                            <button class="close">X</button>
+                            <button class="yes">审核通过</button>
+                            <button class="no">驳回</button>
+                        </div>
+                        <div class="cancle-box">
+                            <p>是否撤销审核</p>
+                            <button class="close">X</button>
+                            <button class="yes">是</button>
+                            <button class="no">否</button>
+                        </div>
+                        <div class="refuse-box">
+                            <p>请输入驳回理由</p>
+                            <button class="close">X</button>
+                            <input type="text" />
+                            <button type="submit">确定</button>
+                        </div>-->
+                    </li>
+                </ul>
+            </foreach>
+        </div>
+        <div class="page-list-link">
+		 <if condition="$data neq '' ">
+         {$page}
+		 </if>
+         <div>
+    </div>
+</body>
+<script>
+    $(function(){
+        $('.datetimepicker-date').datetimepicker({
+        lang: 'ch',
+        onGenerate: function(ct) {
+            $(this).find('.xdsoft_date').toggleClass('xdsoft_disabled');
+        },
+        timepicker: false,
+        format: 'Y-m-d',
+        formatDate: 'Y-m-d',
+        minDate: '-1970/01/02', // yesterday is minimum date
+        maxDate: '+1970/01/02' // and tommorow is maximum date calendar
+    });
+        /*$('.account').click(function(){
+            $(this).children('ul').css('display','block');
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.account ul').css('display','none');
+        })*/
+        //全选
+        $('.info-manage .table .thead li #checkAll').click(function(){
+            var flag=$(this).prop('checked');
+            $("[name = chkItem]:checkbox").prop("checked", flag);
+            $("[name = chkItem]:checkbox").click(function(){
+                var flag2=$(this).prop('checked');
+                $('.info-manage .table .thead li #checkAll').prop('checked',flag2);
+            })
+        })
+       
+        /*弹框*/
+        /*$('.act-online .table .white li .sh').click(function(){
+            $(this).parent().find('.sh-box').css('display','block');
+            event.stopPropagation();
+        })
+        $('.act-online .table .white li .sh-box .yes').click(function(){
+            $(this).parent().css('display','none');
+            $(this).parent().parent().find('.sh').text('撤销审核');
+            event.stopPropagation();
+        })
+        $('.act-online .table .white li .sh-box .no').click(function(){
+            $(this).parent().next('.refuse-box').css('display','block');
+            $(this).parent().parent().find('.sh').text('撤销审核');
+            event.stopPropagation();
+        })
+        $('.act-online .table .white li button.close').click(function(){
+            $(this).parent().css('display','none');
+            event.stopPropagation();
+        })
+        $('.act-online .table .white li .sh-box').click(function(){
+            $(this).show();
+            event.stopPropagation();
+        })
+        $('.act-online .table .white li .refuse-box').click(function(){
+            $(this).show();
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.act-online .table .white li .sh-box').hide();
+            $('.act-online .table .white li .refuse-box').hide();
+        })
+        /*页码
+        $('.pagnation li').click(function(){
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+        })
+        //置顶弹出小网页
+        $('.act-online .table .white li .top-a').click(function(){
+            window.open('top.html','','width=600,height=500,top=200,left=500,location=yes');
+        })*/
+    })
+
+    function call_back(msg){
+        if(msg>0){
+            layer.msg('操作成功', {icon: 6});
+            layer.closeAll('iframe');
+            window.location.href = "{:U('Online/index')}";
+        }else{
+            layer.msg('操作失败', {icon: 5});
+            layer.closeAll('iframe');
+        }
+    }
+</script>
+<script>
+    $(function(){
+        $(".select_act").click(function(){
+            var actId = $(this).attr('act-id');
+            layer.open({
+                type: 2,
+                title: '查看活动',
+                shadeClose: true,
+                area: ['640px', '750PX'],
+                content: '/index.php/Admin/Activity/actPreview/act_id/'+actId,
+            });
+        });
+    })
+</script>
+</html>

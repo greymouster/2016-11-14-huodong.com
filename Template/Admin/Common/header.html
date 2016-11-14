@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天道活动管理平台</title>
+    <link rel="stylesheet" href="__PUBLIC__/Admin/css/style.css">
+    <script src="__PUBLIC__/Admin/js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/layer/layer.js"></script>
+	<script src="__PUBLIC__/Admin/js/layer/extend/layer.ext.js"></script>
+	<script src="__PUBLIC__/Admin/js/ancement.js"></script>
+</head>
+<body>
+<div class="home-top" >
+    <h2>活动管理平台</h2>
+    <if condition="$Think.session.act_list eq 'all'">
+    <p>欢迎  {$Think.session.realname}（超级管理员）</p>
+    <else />
+    <p>欢迎  {$Think.session.realname} (普通管理员)</p>
+   </if>
+    <div class="account">
+        我的账号
+        <ul>
+            <li><a href="{:U('Admin/info')}" target="rightContent">查看账号</a> </li>
+			<li><a href="{:U('Admin/setPasswd')}" target="rightContent">修改密码</a></li>
+            <li><a href="{:U('Admin/loginOut')}">退出账号</a> </li>
+        </ul>
+    </div>
+</div>
+<script>
+    $(function(){
+        $(".account").click(function(){
+            $('.account ul').toggle();
+        })
+    })
+</script>

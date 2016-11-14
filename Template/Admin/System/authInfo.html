@@ -1,0 +1,117 @@
+<include file="Common/main-header" />
+    <div class="join-detail" style="margin-left:-150px;height:1000px;">
+        <h3>权限管理</h3>
+             <a href="{:U('System/addPerson')}" style="font-size: 18px;margin-bottom:10px; ">新增用户</a> 
+        <div class="limit-mana">
+            <div class="limit-left">
+                <dl>
+                    <dt><h3>人员管理</h3></dt>
+                    <form  action="{:U('System/authInfo')}" method="get">
+                    <dd class="search"><input type="search" name="realname"  placeholder="按姓名搜索" /> </dd>
+                    </form>
+                </dl>
+                <div class="content-box">
+                    <foreach name="userData" item="vo">
+                    <dl>
+                        <dt><input type="checkbox" name="name" id="name" />{$vo.realname}</dt>
+                        <dd style="display: none;">
+                            <a href="{:U('Admin/info',array('id'=>$vo[admin_id]))}">查看</a>
+                            <a href="{:U('System/editGroup',array('group_id'=>$vo['group_id']))}">编辑小组</a>
+                            <a href="{:U('System/editAuth',array('id'=>$vo[admin_id]))}">修改权限</a>
+                            <if  condition="$vo['is_lock'] neq '禁用'">
+                            <a href="javascript:;" data-id="{$vo['admin_id']}" class="person-dis">封禁用户</a>
+                            <else />
+                            <a href="javascript:;" data-id="{$vo['admin_id']}" class="person-dis">已禁用</a>
+                            </if>
+                            <div class="box dis-box">
+                                <h2>确定封禁此用户？</h2>
+                                <button class="yes">确定</button>
+                                <button class="cancle">取消</button>
+                            </div>
+                        </dd>
+                    </dl>
+                    </foreach>
+                </div>
+               
+<!--                <div class="page">
+                    <ul>
+                        <li class="active"><a href="#">1</a> </li>
+                        <li><a href="#">2</a> </li>
+                        <li><a href="#">3</a> </li>
+                        <li><a href="#">下一页》</a> </li>
+                        <li>(1-25/64)每页显示：25,50,100</li>
+                    </ul>
+                </div>-->
+            </div>
+             <div class="page page-list-link" >
+                    {$page}
+               <div>
+            <div class="limit-right">
+                <h2>组</h2>
+                <a href="{:U('System/addGroup')}">新建小组</a>
+                <p>显示所有人员</p>
+                <foreach name="groupData" item="val">
+                <dl>
+                    <dt><button>{$val.group_name}</button></dt>
+                    <dd><a href="{:U('System/editGroup',array('group_id'=>$val['id']))}">编辑小组</a> </dd>
+                </dl>
+                </foreach>
+<!--                <dl>
+                    <dt><button>市场部</button></dt>
+                    <dd><a href="edit-group.html">编辑小组</a> </dd>
+                </dl>
+                <dl>
+                    <dt><button>睿德组</button></dt>
+                    <dd><a href="edit-group.html">编辑小组</a> </dd>
+                </dl>
+                <dl>
+                    <dt><button>未分组</button></dt>
+                </dl>-->
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</body>
+<script>
+    $(function(){
+
+        /*勾选姓名，出现蓝色的字*/
+        $('.limit-mana .limit-left dl dt input[type="checkbox"]').click(function(){
+            var check = $(this).prop('checked');
+            if(check==true){
+                $(this).parent().next('dd').css('display','block');
+            }
+            else{
+                $(this).parent().next('dd').css('display','none');
+            }
+        })
+        /*弹框*/
+//        $('.limit-mana .limit-left dl dd .person-dis').click(function(){
+//            $(this).parent().find('.dis-box').css('display','block');
+//            $(this).parent().parent().siblings().find('.box').css('display','none');
+//            event.stopPropagation();
+//        })
+//        $('.limit-mana .limit-left dl dd .dis-box').click(function(){
+//            $(this).show();
+//            event.stopPropagation();
+//        })
+//        $('.limit-mana .limit-left dl dd .cancle').click(function(){
+//            $(this).parent().css('display','none');
+//            event.stopPropagation();
+//        })
+//        $(document).click(function(){
+//            $('.limit-mana .limit-left dl dd .dis-box').hide();
+//        })
+//        /*页码*/
+//        $('.limit-mana .limit-left .page ul li a').click(function(){
+//            $(this).parent().addClass('active');
+//            $(this).parent().siblings().removeClass('active');
+//        })
+        
+        //根据用户名搜所
+        $("input[name='realname']").bind("change",function(){
+            $("form").submit();
+        });
+    })
+</script>
+</html>

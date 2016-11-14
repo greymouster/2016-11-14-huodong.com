@@ -1,0 +1,30 @@
+<include file="Common/main-header" />
+<div class="account-info" style="margin-left:-150px;height:500px;">
+        <h3>账号信息</h3>
+        <form>
+            <dl>
+                <dt>用户名</dt>
+                <dd>{$data->data->username}</dd>
+            </dl>
+            <dl>
+                <dt>姓名</dt>
+                <dd>{$data->data->realname}</dd>
+            </dl>
+            <dl>
+                <dt>邮箱</dt>
+                <dd>{$data->data->email}</dd>
+            </dl>
+            <dl>
+                <dt>部门</dt>
+                <dd>{$data->data->department}</dd>
+            </dl>
+            <dl>
+                <dt>所属组</dt>
+                <empty name="group">
+                <dd>未分组</dd>
+                <else/>
+                <dd>{$group}</dd>
+                </empty>
+            </dl>
+        </form>
+    </div>

@@ -1,0 +1,77 @@
+<include file="Common/main-header" />
+<script src="__PUBLIC__/Admin/Plugins/jqueryform/jquery.form.js"></script>
+    <div class="account-info edit-group" style="margin-left:-150px;height:600px">
+        <h3>权限管理</h3>
+        <a href="limit-mana.html">权限管理</a>>><a href="edit-group.html">编辑小组</a>
+        <form>
+            <dl>
+                <dt><h3>组名称</h3></dt>
+                <dd><input type="text" name="group_name"  data-id="{$Think.get.group_id}" value="{$data['group_name']}" placeholder="编辑组" /> </dd>
+            </dl>
+            <dl>
+                <dt><h3>组员列表</h3></dt>
+                <dd>
+                    <foreach  name="user" item="vo">
+                    <span>{$vo['realname']}<button type="button" data-id="{$vo['admin_id']}"class="delete-user"><img src="__PUBLIC__/Admin/images/u39.jpg"  /></button></span>  
+                    </foreach>
+                </dd>
+            </dl>
+            <dl>
+                <dt><h3>添加组员</h3></dt>
+                <dd><input type="search" placeholder="按姓名搜索" class="search"/> </dd>
+                <a href="javascript:;" data-id ="{$Think.get.group_id}" class="addUser">加入本组</a>
+            </dl>
+            <ul class="add-li">
+            </ul>
+            <div class="reserve">
+                <button type="button" class="edit-group edit-user-group">保存设置</button>
+                 <button type="button" data-id="{$Think.get.group_id}" class="delete-user-group">删除小组</button>
+			</div>
+        </form>
+        <h4>加入本组后的人将显示在组员列表中，成员横向展示点击组员列表的名字右侧会显示叉子，可移出本组</h4>
+    </div>
+</body>
+<script>
+    $(function(){
+        $('.account').click(function(){
+            $(this).children('ul').css('display','block');
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.account ul').css('display','none');
+        })
+        /*删除组员*/
+        $('.edit-group form dl dd span').click(function(){
+           $(this).children("button").show();
+        })
+		
+		/*删除小组*/
+		 $(".delete-user-group").click(function(){
+            var id = $(this).data('id');
+            layer.confirm('确认删除?',{
+                btn: ['确定', '取消'], //按钮
+            },function(){
+                $.ajax({
+                    url : "{:U('System/ajaxDelGroup')}",
+                    data: {id:id},
+                    type : 'POST',
+                    dataType : 'json',
+                    success : function(data){
+                        if(data.status>0){
+                            layer.msg(data.info,{icon:6});
+                            setTimeout(function(){
+                                window.location.href = "{:U('System/authInfo')}";
+                            },1500);
+                        }else{
+                            layer.msg(data.info,{icon:5});
+                        }
+                    }
+                });
+            },function(index){
+                layer.close(index);
+                return false;// 取消
+            })
+        });
+    })
+</script>
+</html>

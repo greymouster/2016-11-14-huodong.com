@@ -1,0 +1,23 @@
+<include file="Common/main-header" />
+<div class="new-info" style="margin-left:-150px;">
+    <h3>最新公告</h3>
+    <empty name="data">
+        <a href="{:U('Notice/edit','',false)}/id/{$vo.id}">修改公告</a>
+        <a href="{:U('Notice/add')}">新增公告</a>
+    </empty>
+    <volist name="data" id="vo">
+        <h2>{$vo.title}<span>发布时间：{$vo.update_time}</span></h2>
+        <a href="{:U('Notice/edit','',false)}/id/{$vo.id}">修改公告</a>
+        <a href="{:U('Notice/add')}">新增公告</a>
+        <div class="news">
+            {$vo.content}
+        </div>
+    </volist>
+</div>
+<notempty name="data">
+    <div class="page-list-link">
+        {$page}
+    <div>
+</notempty>
+</body>
+</html>

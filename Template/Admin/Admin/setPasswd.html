@@ -1,0 +1,66 @@
+<include file="Common/main-header" />
+<div class="account-info" style="margin-left:-150px;height:500px;">
+    <h3>修改密码</h3>
+    <form>
+        <dl>
+            <dt>原密码:</dt>
+            <dd><input type="password" name="oldpwd" onkeyup="value=value.replace(/\s/g,'')"
+ placeholder="请输入原密码"></dd>
+        </dl>
+        <dl>
+            <dt>新密码:</dt>
+            <dd><input type="password" name="newpwd" onkeyup="value=value.replace(/\s/g,'')"
+ placeholder="请输入新密码"></dd>
+        </dl>
+        <dl>
+            <dt>重复密码:</dt>
+            <dd><input type="password"  name = "rnpwd" onkeyup="value=value.replace(/\s/g,'')"
+ placeholder="请输入重复密码"></dd>
+        </dl>
+        <dl>
+            <dd ><input class="button submit-pwd"type="button" value="保存" ></dd>
+            <dd ><input class="button remove-pwd"type="button" value="取消" ></dd>
+        </dl>
+    </form>
+</div>
+<script>
+    $(".submit-pwd").click(function(){
+        var oldpwd = $.trim($("input[name='oldpwd']").val());
+        var newpwd = $.trim($("input[name='newpwd']").val());
+        var rnpwd = $.trim($("input[name='rnpwd']").val());
+        if(oldpwd == null || oldpwd.length < 6){
+            layer.alert('原密码不能少于6位',{icon:5});
+            return false;
+        }
+        if(newpwd == null || newpwd.length < 6){
+            layer.alert('新密码不能少于6位',{icon:5});
+            return false;
+        }
+        if(newpwd != rnpwd){
+            layer.alert('两次密码不一致',{icon:5});
+            return false;
+        }
+        $.ajax({
+            url:"{:U('Admin/setPwd')}",
+            data:{oldpwd:oldpwd,newpwd:newpwd,rnpwd:rnpwd},
+            type : 'POST',
+            dataType : 'json',
+            success : function(data){
+                if(data.status >0){
+                    layer.msg(data.msg,{icon:6});
+                    setTimeout(function(){
+                        window.location.href = "{:U('Admin/info')}";
+                    },1500);
+                }else{
+                    layer.alert(data.msg,{icon:5});
+                    return false;
+                }
+            }
+        });
+
+    });
+    $(".remove-pwd").click(function(){
+        window.location.href = "{:U('Admin/info')}";
+    });
+</script>
+

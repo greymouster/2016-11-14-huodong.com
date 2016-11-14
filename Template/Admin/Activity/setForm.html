@@ -1,0 +1,166 @@
+<include file="Common/main-header" />
+<script src="__PUBLIC__/Admin/js/form-set.js"></script>
+<script src="__PUBLIC__/Admin/Plugins/jqueryform/jquery.form.js"></script>
+    <div class="publish-act" style="margin-left:-150px;height:2000px;">
+        <h3>发布新活动</h3>
+        <a href="publish-act.html">发布新活动</a>>><a href="act-set.html">报名表单设置</a>
+        <div class="act-info act-set">
+            <div class="top">
+                <div class="one">
+                    <p>1.填写信息</p>
+                    <img src="__PUBLIC__/Admin/images/u50.png" />
+                </div>
+                <div class="line"></div>
+                <div class="one">
+                    <p class="active">2.报名表单设置</p>
+                    <img src="__PUBLIC__/Admin/images/u50.png" />
+                </div>
+            </div>
+            
+                <form action="" id="setFormData" method="POST" >
+            <div class="form-set">
+                <p class="title">报名表单设置</p>
+                <div class="set-left">
+                    <p style="color:red; border-bottom: 1px gray solid;margin:10px 0 10px 10px;text-indent: 30px;height:40px;">用户基础信息(此处全部是必填项)</p>
+<!--                    <h1>预览样式</h1>
+                    <a href="use-form.html" class="operation">启用表单模板</a>-->
+                        <input type="hidden" name="activityId" value="{$Think.get.act_id}" />
+                        <input type="hidden" name="version" value="1" />
+
+                        <input type="hidden" id="template_form_sort_max" name="sortmax" value="0" />
+                    <div class="required" style="border-bottom:1px solid gray;margin-bottom: 10px;">
+                        <dl>
+                            <dt>姓名<span>*</span></dt>
+                            <dd><input type="text" name="user_name" placeholder="请输入报名人姓名" disabled="disabled"/> </dd>
+                        </dl>
+                        <dl>
+                            <dt>手机<span>*</span></dt>
+                            <dd><input type="text" name="user_phone" placeholder="请输入报名人手机号" disabled="disabled"/></dd>
+                        </dl>
+                        <dl>
+                            <dt>邮箱<span>*</span></dt>
+                            <dd><input type="text" name="user_mail" placeholder="请输入报名人邮箱"  disabled="disabled"/></dd>
+                        </dl>
+                    </div>
+                    <div class="usual-form">
+                    {$html}
+                    </div>
+                <div class="set-bottom">
+                       <notempty name="data">
+                           <button type="button" class="submit save-form-data" value="修改" />保存</button>
+                       <else />
+                           <button type="button" class="submit set-form-submit" value="保存" />保存</button>
+                       </notempty>
+                    </from>
+                        <!--<input type="submit" class="moudle" value="保存为表单模板" />-->
+                        <a class="btn look" href="javascript:;" data-id="{$Think.get.act_id}" data-version="{$Think.get.version}"><button type="button">预览</button></a>
+                </div>
+                    <div class="set-bottom">
+                        <a class="btn  act_push" href="javascript:;" data-id="{$Think.get.act_id}"><button type="button">发布活动</button></a>
+                        <!--<a class="btn act_push_tuiguang" href="{:U('Activity/actPromotion',array('act_id'=>I('get.act_id')))}"><button type="button">发布并推广</button></a>-->
+                        <a class="btn act_push_tuiguang" href="javascript:;" data-id="{$Think.get.act_id}"><button type="button">发布并推广</button></a>
+                    </div>
+<!--                    <div class="moudle-box">
+                        <input type="text" placeholder="请输入表单模板名称">
+                        <button type="submit">保存</button>
+                    </div>-->
+                </div>
+                <div class="set-right">
+                    <ul class="menu">
+                        <li class="active">添加字段</li>
+                    </ul>
+                    <ul class="content">
+                        <li>
+                            <h2>自定义报名表单</h2>
+                            <div class="usual usual-fo">
+                                <p>常用表单</p>
+                                <span class="input" onclick="javascript:addEventFormCommonItem(0);return false;" style="cursor:pointer">城市</span>
+                                <span class="input" onclick="javascript:addEventFormCommonItem(1);return false;" style="cursor:pointer">QQ</span>
+                                <span class="input" onclick="javascript:addEventFormCommonItem(2);return false;" style="cursor:pointer">微信</span>
+                            </div>
+                            <div class="usual diy">
+                                <p>自定义</p>
+                                <span class="input" onclick="javascript:addEventFormEmptyItem(0);;return false;" style="cursor:pointer">单行文本框</span>
+                                <span class="area" onclick="javascript:addEventFormEmptyItem(1);;return false;" style="cursor:pointer">多行文本框</span>
+                                <span class="sin-radio" onclick="javascript:addEventFormEmptyItem(2);;return false;" style="cursor:pointer">单选按钮组</span>
+                                <span class="more-chack" onclick="javascript:addEventFormEmptyItem(3);;return false;" style="cursor:pointer">多选按钮组</span>
+                                <span class="selects" onclick="javascript:addEventFormEmptyItem(4);;return false;" style="cursor:pointer">下拉框</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+    </div>
+<div id="dlg-review-event-form" class="modal">
+    <div class="modal-dialog" style="width:800px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal" type="button">×</button>
+                <h3 class="modal-title">预览活动表单</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="page-header">
+                        <span class="label label-warning header_label">联系方式</span>
+                        <div class="page-header-line"></div>
+                    </div>
+                    <div class="contact" style="padding-left:30px;">
+                        <div class="control-group">
+                            <label class="control-label" style="font-weight:bold;">姓名</label>
+                            <div class="controls">
+                                <input class="required disabled input-xlarge" disabled="disabled" type="text">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" style="font-weight:bold;">手机号码</label>
+                            <div class="controls">
+                                <input class="required disabled input-xlarge" disabled="disabled" type="text">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" style="font-weight:bold;">电子邮箱</label>
+                            <div class="controls">
+                                <input class="required disabled input-xlarge" disabled="disabled" type="text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page-header">
+                        <span class="label label-warning header_label">其他</span>
+                        <div class="page-header-line"></div>
+                    </div>
+                    <fieldset id="event_template_form_fields" style="padding-left:30px;">
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-create-default" data-dismiss="modal"><i class="icon-off"></i>关闭</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+       
+        /*弹框,js里面有event.stopPropagation()要给函数传入参数，兼容火狐*/
+        $('.form-set .set-left .set-bottom input.moudle').click(function(event){
+            $(this).parent().parent().find('.moudle-box').show();
+            event.stopPropagation();
+        })
+        $('.form-set .set-left .moudle-box').click(function(event){
+            $(this).show();
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.form-set .set-left .moudle-box').hide();
+        })
+		
+    })
+
+</script>
+
+
+</html>

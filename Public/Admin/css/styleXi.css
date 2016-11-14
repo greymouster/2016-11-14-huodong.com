@@ -1,0 +1,85 @@
+/*首页*/
+.zdouf{ overflow: hidden;}
+.zdouf a{  float: left;}
+
+
+    /*我的入场券*/
+.juan{ background: #f3f3f3;
+        padding: 1em 0;}
+.juan p{ text-align: center;
+          font-size: 1.4em;}
+.cm{  width: 80%;
+      padding: 1em 10%}
+.bottom{height: 4em; width: 100%; background: #1da6ec;}
+.bottom a{ text-align: center; color: #fff; font-size: 1.3em; width:100%; display: inline-block; line-height: 3em; float: left;}
+/*活动详情*/
+.xq{ background: #f3f3f3; width: 100%; padding-top: 0.6em;}
+.xq_con{ width: 100%;  background: #fff;}
+.xq_con .nei{ width: 92%;margin: 0 auto;}
+.xq_con .nei address{ color: #333; font-size: 1.5em; padding: 1em 0 0.5em 0; border-bottom: 1px solid #f3f3f3;}
+.xq_con .nei article{color: #666; font-size: 1.3em;padding: 0.5em 0; }
+.xq_con .nei li{ color: #999999; font-size: 0.8em;}
+.xq_con .nei .dian{ background: #e2e2e2; border-radius: 100%; width: 0.6em; height: 0.6em; display: inline-block; margin-right: 0.5em;}
+.xq_con .p{width: 92%;margin: 0 auto; color: #999; font-weight: bold; font-size: 1.8em; padding: 1em 0 0.5em 0;}
+
+.mshi{width: 100%;margin: 0 auto;}
+.mshi article{ width: 92%;margin: 0 auto; color: #333;font-size: 1.8em; line-height: 2em; padding: 1em 0;}
+.mshi article img{width: 18%; float: left; padding-right: 0.5em;}
+.mshi p{ width: 100%;font-size: 1.1em; color: #888; background: #f9f8f8; padding:1em;}
+.mshi p i{ color: #333;}
+
+.xq_foot{ background: #f3f3f3; width: 100%; padding: 1em; overflow: hidden; margin-bottom: 87px;}
+.xq_foot .tit{ background: url("../images/biao.png") no-repeat; background-size:  100% 100%; color: #666; text-align: center; font-size: 1.1em; margin-bottom: 1em;}
+.xq_foot dl{ float: left; text-align: center; width: 33%;}
+.xq_foot dl dd{ width: 100%;}
+.xq_foot img{ width:50%; margin: 0 auto;}
+
+.xq_bottm{ width: 100%;position: fixed; bottom: 0;}
+.xq_bottm .sc{ float: left; width: 40%; background: #fff;border: 2px solid #b4b4b4; height: 48px; color: #888;  display:inline-block;text-align: center;}
+.xq_bottm .sc img{ width: 15%; margin: 3px auto 0;}
+.xq_bottm .bm{ color:#fff; background: #1da6ec; text-align: center; float: left; width: 60%; border-top: 2px solid #1da6ec;border-bottom: 2px solid #1da6ec;display: inline-block; height: 48px; font-size: 1.3em; line-height: 3em;}
+/*活动列表*/
+/* 效果导航 */
+.effectNav{ margin-top:10px;  border-top:1px solid #666; background:#999; padding-bottom:10px;  }
+.effectNav h3{ padding:0 10px; background:#ddd; background:#333; color:#fff;  }
+.effectNav ul{ font-size:0;  }
+.effectNav li{ display:inline-block; font-size:12px; padding:0 10px; margin:10px 0 0 10px;  background:#cdcdcd;  }
+.effectNav li.new{ background:#fce8cd;  }
+
+
+/* 活动切换 */
+
+.hd{ height:40px; line-height:40px;  font-size:1.2em; background:#fff;  position:relative; margin-bottom: 10px;  }
+.hd ul{ position:absolute; height:41px; top:2px; overflow:hidden; width: 100%;  }
+.hd ul li{ float:left; padding:10px 0; color:#666; width: 25%; text-align: center; display: block;  }
+.hd ul li a{color:#666;;}
+.hd ul .on{  background:#e7e7e7;   }
+.hd ul .on a{ display:block; color:#666; /* 修复Android 4.0.x 默认浏览器当前样色无效果bug */  }
+.tabBox .bd dl{  background:#fff; float: left; width: 68%;  }
+.tabBox .bd dl .ne{ padding: 10px; border-bottom: 1px solid #f3f3f3; overflow: hidden;}
+.tabBox .bd dl .ne dt{ padding-top: 0.6em; font-weight: 700; font-size: 1.2em;}
+.tabBox .bd dl .ne dd{ color: #888;}
+.tabBox .bd .bdimg{ width: 30%; float: left; margin-right: 2%; position: relative;}
+.tabBox .bd .bdimg img{width: 100%; }
+.tabBox .bd .bqian{ position: absolute; bottom: 0; right: 0; background: #f56a1f; width: 50px; height: 20px;    text-align: center;  color: #fff;  line-height: 20px;}
+.tabBox .bd dl .nd{ padding: 10px; border-bottom: 1px solid #f3f3f3; overflow: hidden;}
+.tabBox .bd dl .nd dt{ padding-top: 1.4em; font-weight: 700; font-size: 1.2em;}
+.tabBox .bd dl .nd a{ float:right; display: block;margin-top: 1.2em; background: #e5e5e5; padding:2px 5px; color: #fff;}
+
+.title{ position: relative; height:41px; top:0px; height:40px; line-height:40px;  font-size:1.2em; background:#fff;overflow:hidden; width: 100%;  }
+.title li{ float:left; padding:10px 0; color:#666; width: 25%; text-align: center; display: block;  }
+.title li:hover{ background: #f3f3f3;}
+.title .on{  background:#e7e7e7;   }
+.title .on a{ display:block; color:#333; /* 修复Android 4.0.x 默认浏览器当前样色无效果bug */  }
+.title_con div{ display: none; position: absolute; top: 0px;width: 100%; z-index: 99}
+.title_con dl{ padding:0px 20px; background:#fff;  }
+.title_con dl dd{ float: none; width: 100%; display: inline-block; border-top: 1px solid #f3f3f3;}
+/*待确定*/
+.n_dqr{ background: #f3f3f3; padding-top: 100px;}
+.n_dqr img{ width:30%; margin: 0 auto;}
+.n_dqr p{ text-align: center; color: #666666; font-size: 1.2em; padding: 10px 0}
+.n_dqr a{ display:block; width:40%; margin: 0 auto; background: #1da6ec; color: #fff; font-size: 1.2em; text-align: center;  padding: 5px 0}
+
+
+.tabBox .bd .dlpd{padding: 1em}
+.allTxt1 .dIcon dl .bdnone{ border-bottom: none;}

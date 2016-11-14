@@ -1,0 +1,69 @@
+<include file="Common/main-header" />
+    <div class="info-manage info-url activity-me" style="margin-left:-150px;height:1000px">
+        <h3>我推广的活动</h3>
+        <div class="choose">
+            <p class="p-choose">筛选</p>
+            <dl>
+                <dt>活动负责人：<span>{$username}</span></dt>
+				<form id="search-form2"  action="{:U('Activity/exportExel')}" method="get">
+                <dd>
+                    <select name="act_id">
+                           <option value="">所属活动</option>
+                        <foreach name="act" item="vo">
+                           <option value="{$vo.act_id}" <if condition="$Think.get.act_id eq $vo['act_id']">selected="selected"</if>>{$vo.act_name}</option>
+                        </foreach>
+                    </select>
+                </dd>
+                <dd>
+                    <select name="act_current_status">
+                        <option value="">全部活动状态</option>
+                        <option value="1" <if condition="$Think.get.act_current_status eq 1">selected="selected"</if>>未发布</option>
+                        <option value="2" <if condition="$Think.get.act_current_status eq 2">selected="selected"</if>>待审核</option>
+                        <option value="3" <if condition="$Think.get.act_current_status eq 3">selected="selected"</if>>审核通过</option>
+                        <option value="4" <if condition="$Think.get.act_current_status eq 4">selected="selected"</if>>已上线</option>
+                        <option value="5" <if condition="$Think.get.act_current_status eq 5">selected="selected"</if>>已结束</option>
+                        <option value="6" <if condition="$Think.get.act_current_status eq 6">selected="selected"</if>>驳回</option>
+                    </select>
+                </dd>
+                <dd><input type="button" value="筛选" onclick="ajax_get_table('search-form2',1)" class="search-data"/> </dd>
+                 <dd><input type="submit" value="导出" class="export-exel"/> </dd>              
+			  </form>
+             
+            </dl>
+        </div>
+    <div id="ajax_return" height="100%">
+      
+    </div>
+    </div>
+</body>
+<script>
+ // ajax 抓取页面
+    function ajax_get_table(tab,page){
+        cur_page = page; //当前页面 保存为全局变量
+            $.ajax({
+                type : "POST",
+                url:"/index.php/Admin/Activity/ajax_return/p/"+page,
+                data : $('#'+tab).serialize(),// 你的formid
+                success: function(data){
+                    $("#ajax_return").html('');
+                    $("#ajax_return").append(data);
+                }
+            });
+    }
+    $(function(){
+	
+	    ajax_get_table('search-form2',1);
+        $('.account').click(function(){
+            $(this).children('ul').css('display','block');
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.account ul').css('display','none');
+        })
+        $('.pagnation li').click(function(){
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+        })
+    })
+</script>
+</html>

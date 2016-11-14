@@ -1,0 +1,45 @@
+<include file="Common/main-header" />
+    <div class="info-manage act-form" style="margin-left:-150px;height:1000px;">
+        <h3>活动信息管理</h3>
+        <a href="javascript:;">活动信息管理</a>>><a href="javascript:;">{$data.act_name}</a>>><a href="javascript:;">查看报名表单</a>
+        <div class="table table-one">
+            <ul class="thead">
+                <li class="li-lg">活动名称</li>
+                <li>创建人</li>
+                <li>活动时间</li>
+                <li>访问量</li>
+                <li>报名量</li>
+                <li>收藏量</li>
+            </ul>
+            <ul>
+               <li class="li-lg">{$data.act_name}</li>
+                <li>{$data.act_charge_name}</li>
+                <li>{$data.act_date}</li>
+                <li>{$data.num}</li>
+                <li>{$data.count}</li>
+                <li>{$data.collectCount}</li>
+            </ul>
+        </div>
+        <a href="{:U('Activity/exportStudentExel',array('act_id'=>$data['act_id']))}">导出到excel</a>
+        <div class="table table-two">
+            <ul class="thead">
+                <li>序号</li>
+                <li>姓名</li>
+                <li>手机号</li>
+                <li>邮箱</li>
+            </ul>
+            <foreach name="studentsData" item="val">
+            <ul>
+                <li><?php echo ++$key;?></li>
+                <li>{$val.user_name}</li>
+                <li>{$val.phone}</li>
+                <li>{$val.email}</li>
+            </ul>
+            </foreach>
+        </div>
+         <div class="page-list-link">
+           {$page}
+         <div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<include file="Common/header" />
+<include file="Common/left" />
+<div style="margin:0px;padding:0px;margin-left:180px;height:100%;">
+    <iframe  id="iframe" width="100%"   name="rightContent" frameborder=0 scrolling="no" src="{:U('Admin/info')}"></iframe>
+</div>
+
+
+<script type="text/javascript">
+
+        $("#iframe").load(function () {
+            var mainheight = $(this).contents().find("body").height() + 30;
+			mainheight = mainheight < 882 ? 882 : mainheight;
+            $(this).height(mainheight);
+            $(document).scrollTop(0);
+        });
+
+</script>

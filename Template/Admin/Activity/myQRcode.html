@@ -1,0 +1,65 @@
+<include file="Common/main-header" />
+    <div class="info-manage info-url activity-me" style="margin-left:-150px;height:1000px;">
+        <h3>我的二维码</h3>
+        <div class="table">
+            <ul class="thead">
+                <li class="li-xs">编号</li>
+                <li class="li-sm">所属活动</li>
+                <li>渠道</li>
+                <li>渠道名称</li>
+                <li>渠道具体信息</li>
+                <li>备注信息</li>
+                <li class="li-lg">操作</li>
+            </ul>
+			<foreach name="data" item="val" key="k">
+                <if condition="$val.channel_qrcode neq ''">
+            <ul>
+                <li class="li-xs">{$thispage+$k+1}</li>
+                <li class="li-sm">{$val.act_name}</li>
+                <li>{$val.channel_name}</li>
+                <li>{$val.channel_alias}</li>
+                <li>{$val.channel_detal}</li>
+                <li>{$val.channel_remarks}</li>
+                <li class="li-lg">
+                    <if condition="$val.channel_qrcode neq ''">
+					<a href="{:U('Activity/downFile',array('id'=>$val['id']))}" >下载</a>
+					<a href="javascript:;" data-id="{$val.id}" class="show-qrcode">查看</a>
+					<else />
+					    <a href="javascript:;" style="color:gray;">下载</a>
+					    <a href="javascript:;" style="color:gray;">查看</a>
+                    </if>
+                    <a href="javascript:;" data-url="{$val.channel_url}"class="copy-url">复制推广URL</a>
+                    <if condition="$val.channel_qrcode neq ''">                 
+				      <a href="javascript:;" data-id="{$val.id}" class="del-qrcode">删除二维码</a>
+					<else />
+					  <a href="javascript:;" style="color:gray;">删除二维码</a>
+                    </if>
+				</li>
+            </ul>
+                    </if>
+			</foreach>
+        </div>
+		<notempty name="data">
+        <div class="page-list-link">
+	     {$page}
+	    <div>
+		</notempty>
+    </div>
+</body>
+<script>
+    $(function(){
+        $('.account').click(function(){
+            $(this).children('ul').css('display','block');
+            event.stopPropagation();
+        })
+        $(document).click(function(){
+            $('.account ul').css('display','none');
+        })
+        $('.pagnation li').click(function(){
+            $(this).addClass('active');
+            $(this).siblings().removeClass('active');
+        })
+    })
+	
+</script>
+</html>

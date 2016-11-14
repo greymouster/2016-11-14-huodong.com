@@ -1,0 +1,36 @@
+<include file="Common/main-header" />
+<div class="info-manage info-url act-sort" style="margin-left:-150px;">
+        <h3>活动地点管理</h3>
+        <div class="table">
+            <ul class="thead">
+                <li class="li-xs">排序</li>
+                <li class="li-sm">地点</li>
+                <li>顺序调整</li>
+                <li>操作</li>
+            </ul>
+            <foreach name="data" item="vo" key="k">
+            <ul>
+                <li class="li-xs place-id">{$k+1}</li>
+                <li class="li-sm">{$vo.place_name}</li>
+                <li>
+                    <button class="place-sort-asc" sort-number="{$vo.sort_number}"><img src="__PUBLIC__/Admin/images/u75.png" /> </button>
+                    <button class="place-sort-desc" sort-number="{$vo.sort_number}"><img src="__PUBLIC__/Admin/images/u751.png" /> </button>
+                </li>
+                <li>
+                    <a class="delete place-delete" style="cursor:pointer" data-id="{$vo.id}">删除</a>
+                   <!-- <div class="delete-box">
+                        <h2>确定删除此地点？</h2>
+                        <button class="yes">保存</button>
+                        <button class="cancel">取消</button>
+                    </div>-->
+                </li>
+            </ul>
+			</foreach>
+            <a href="javascript:;" class="add place-add" style="cursor:pointer">新增</a>
+        </div>
+        <!--<div class="reserve">
+            <button type="submit">保存</button>
+        </div>-->
+    </div>
+</body>
+</html>	
